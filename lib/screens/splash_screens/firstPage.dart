@@ -6,7 +6,8 @@ class Firstpage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold( // أضف Scaffold
+      home: Scaffold(
+        // أضف Scaffold
         body: Container(
           width: MediaQuery.of(context).size.width, // استخدم العرض الكامل
           height: MediaQuery.of(context).size.height, // استخدم الارتفاع الكامل
@@ -21,13 +22,16 @@ class Firstpage extends StatelessWidget {
             children: [
               Positioned(
                 left: 17,
+                right: 17,
                 top: 247,
                 child: Container(
                   width: 368,
                   height: 368,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assets/images/logo/logo.png'), // استخدام AssetImage بدلاً من NetworkImage
+                      image: AssetImage(
+                        'assets/images/logo/logo.png',
+                      ), // استخدام AssetImage بدلاً من NetworkImage
                       fit: BoxFit.cover,
                     ),
                   ),

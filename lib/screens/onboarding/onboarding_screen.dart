@@ -34,7 +34,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
           // زر التخطي أو المتابعة
           Positioned(
-            bottom: 80,
+            bottom: _currentPage == onboardingData.length - 1
+                ? 100
+                : 50,
             left: 20,
             right: 20,
             child: _currentPage == onboardingData.length - 1
@@ -44,7 +46,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
           // نقاط الترقيم (Indicators)
           Positioned(
-            bottom: 50,
+            bottom:70,
             left: 0,
             right: 0,
             child: Row(
@@ -63,7 +65,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       indicators.add(
         AnimatedContainer(
           duration: Duration(milliseconds: 300),
-          width: _currentPage == i ? 24 : 8, // النقطة المفعلة أوسع
+          width: _currentPage == i ? 20 : 8, // النقطة المفعلة أوسع
           height: 8,
           margin: const EdgeInsets.symmetric(horizontal: 4),
           decoration: BoxDecoration(
@@ -101,10 +103,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             );
           },
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
             decoration: BoxDecoration(
               color: const Color(0xFF319610),
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(15),
             ),
             child: const Row(
               children: [
@@ -112,12 +114,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   'Next',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 16,
+                    fontSize: 18,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
                 SizedBox(width: 5),
-                Icon(Icons.arrow_forward, color: Colors.white, size: 16),
               ],
             ),
           ),

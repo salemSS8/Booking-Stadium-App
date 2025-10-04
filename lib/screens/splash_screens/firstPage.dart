@@ -7,10 +7,9 @@ class Firstpage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        // أضف Scaffold
         body: Container(
-          width: MediaQuery.of(context).size.width, // استخدم العرض الكامل
-          height: MediaQuery.of(context).size.height, // استخدم الارتفاع الكامل
+          width: MediaQuery.of(context).size.width, 
+          height: MediaQuery.of(context).size.height, 
           clipBehavior: Clip.antiAlias,
           decoration: ShapeDecoration(
             color: const Color(0xFFFCFEFD),
@@ -31,7 +30,7 @@ class Firstpage extends StatelessWidget {
                     image: DecorationImage(
                       image: AssetImage(
                         'assets/images/logo/logo.png',
-                      ), // استخدام AssetImage بدلاً من NetworkImage
+                      ),
                       fit: BoxFit.cover,
                     ),
                   ),

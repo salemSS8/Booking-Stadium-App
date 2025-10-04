@@ -13,8 +13,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'تطبيقي',
-      theme: ThemeData(primarySwatch: Colors.green, fontFamily: 'Rubik'),
       home: const SplashScreenWrapper(),
       routes: {
         '/onboarding': (context) => const OnboardingScreen(),

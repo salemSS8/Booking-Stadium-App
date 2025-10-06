@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:project/screens/Registration process/signUp.dart';
+import '../main_screen/main_page.dart';
 import 'forgetPassword/Inter_Email.dart';
 
 // 1. تحويل الويدجت إلى StatefulWidget
@@ -30,16 +31,7 @@ class _LoginPageState extends State<LoginPage> {
               padding: const EdgeInsets.symmetric(vertical: 50.0, horizontal: 25.0),
               child: Row(
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: const Icon(
-                      Icons.arrow_back_ios,
-                      color: Colors.white,
-                      size: 24.0,
-                    ),
-                  ),
+                  //
                   const SizedBox(width: 10),
                   Expanded(
                     child: Center(
@@ -206,8 +198,14 @@ class _LoginPageState extends State<LoginPage> {
                         child: SizedBox(
                           width: 200,
                           child: ElevatedButton(
+                            // --- 2. تعديل هذا الجزء ---
                             onPressed: () {
                               // منطق تسجيل الدخول
+                              // استبدال الصفحة الحالية بالصفحة الرئيسية
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(builder: (context) => const MainPage()),
+                              );
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFF319710),

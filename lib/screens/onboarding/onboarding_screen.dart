@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../models/onboarding_model.dart';
+import '../Registration process/login.dart';
 import 'onboarding_page.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -140,7 +141,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           elevation: 2,
         ),
         onPressed: () {
-          Navigator.pushReplacementNamed(context, '/login');
+          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const LoginPage()), (route) => false);
         },
         child: const Text(
           'Get Started',

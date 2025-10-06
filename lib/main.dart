@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/splash_screens/firstPage.dart';
 import 'screens/onboarding/onboarding_screen.dart';
-import 'screens/Registration process/login.dart';
-import 'screens/Registration process/signUp.dart';
-import 'screens/Registration process/ForgetPassword_1.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,14 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const SplashScreenWrapper(),
-      routes: {
-        '/onboarding': (context) => const OnboardingScreen(),
-        '/login': (context) => LoginPage(),
-        '/register': (context) => SignUpPage(),
-        '/forgot-password': (context) => ForgotPasswordScreen(),
-      },
-      debugShowCheckedModeBanner: false,
+      home: const SplashScreenWrapper()
     );
   }
 }

@@ -10,7 +10,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const SplashScreenWrapper()
+      // --- أضف هذا السطر لإزالة شريط DEBUG ---
+      debugShowCheckedModeBanner: false,
+      home: const SplashScreenWrapper(),
     );
   }
 }

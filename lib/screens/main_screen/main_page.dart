@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
+// تأكد من أن هذا المسار صحيح
+import 'package:project/screens/main_screen/stadium_details.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    // قائمة بيانات الملاعب مع تصحيح الخطأ الإملائي في المسار
+  @override Widget build(BuildContext context) {
     final List<Map<String, String>> stadiums = [
-      {'name': 'Al-Siteen Stadium', 'price': '\$100 / hour', 'image': 'assets/images/main_page/1.png'},
-      {'name': 'Al-Amoudi Stadium', 'price': '\$15 / hour', 'image': 'assets/images/main_page/2.png'},
-      {'name': 'Al-Siteen Stadium', 'price': '\$100 / hour', 'image': 'assets/images/main_page/3.png'},
-      {'name': 'Al-Amoudi Stadium', 'price': '\$15 / hour', 'image': 'assets/images/main_page/4.png'},
-      {'name': 'Al-Siteen Stadium', 'price': '\$100 / hour', 'image': 'assets/images/main_page/5.png'},
-      {'name': 'Al-Amoudi Stadium', 'price': '\$15 / hour', 'image': 'assets/images/main_page/6.png'},
+      {'name': 'Al-Siteen Stadium', 'price': '\$100 / hour', 'image': 'assets/images/stadiums/1.png'},
+      {'name': 'Al-Amoudi Stadium', 'price': '\$15 / hour', 'image': 'assets/images/stadiums/2.png'},
+      {'name': 'Al-Siteen Stadium', 'price': '\$100 / hour', 'image': 'assets/images/stadiums/3.png'},
+      {'name': 'Al-Amoudi Stadium', 'price': '\$15 / hour', 'image': 'assets/images/stadiums/4.png'},
+      {'name': 'Al-Siteen Stadium', 'price': '\$100 / hour', 'image': 'assets/images/stadiums/5.png'},
+      {'name': 'Al-Amoudi Stadium', 'price': '\$15 / hour', 'image': 'assets/images/stadiums/6.png'},
     ];
 
     return Scaffold(
@@ -33,13 +33,12 @@ class MainPage extends StatelessWidget {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    child: const Icon(Icons.menu, color: Color(0xFF319610)),
+                    child: const Icon(Icons.settings_input_component_rounded, color: Color(0xFF319610)),
                   ),
                   const SizedBox(width: 27),
                   Expanded(
-                    // --- 1. تم إصلاح حقل البحث هنا ---
                     child: TextField(
-                      style: const TextStyle( // نمط النص الذي يكتبه المستخدم
+                      style: const TextStyle(
                         color: Color(0xFF319610),
                         fontSize: 18,
                         fontFamily: 'Roboto',
@@ -56,10 +55,10 @@ class MainPage extends StatelessWidget {
                           fontWeight: FontWeight.w500,
                         ),
                         prefixIcon: const Icon(Icons.search, color: Color(0xFF319610)),
-                        contentPadding: const EdgeInsets.symmetric(vertical: 18.0), // لضبط الارتفاع
+                        contentPadding: const EdgeInsets.symmetric(vertical: 18.0),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
-                          borderSide: BorderSide.none, // إخفاء الحدود
+                          borderSide: BorderSide.none,
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
@@ -69,8 +68,6 @@ class MainPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20),
                           borderSide: BorderSide.none,
                         ),
-                        // إضافة الظل كما كان في التصميم السابق
-                        // يتم وضع الظل الآن على الحاوية الخارجية
                       ),
                     ),
                   ),
@@ -100,10 +97,25 @@ class MainPage extends StatelessWidget {
                   itemCount: stadiums.length,
                   itemBuilder: (context, index) {
                     final stadium = stadiums[index];
-                    return StadiumCard(
-                      name: stadium['name']!,
-                      price: stadium['price']!,
-                      imageUrl: stadium['image']!,
+                    return GestureDetector(
+                      onTap: () {
+                        // --- تم الإصلاح هنا: تمرير البيانات إلى صفحة التفاصيل ---
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => StadiumDetailsPage(
+                              name: stadium['name']!,
+                              price: stadium['price']!,
+                              imageUrl: stadium['image']!,
+                            ),
+                          ),
+                        );
+                      },
+                      child: StadiumCard(
+                        name: stadium['name']!,
+                        price: stadium['price']!,
+                        imageUrl: stadium['image']!,
+                      ),
                     );
                   },
                 ),
@@ -116,8 +128,7 @@ class MainPage extends StatelessWidget {
   }
 }
 
-// --- ويدجت مخصص لبطاقة الملعب ---
-// لقد أعدت الكود كما كان في حالتك الأصلية بناءً على الملف الذي شاركته
+// --- ويدجت مخصص لبطاقة الملعب (لا تغيير هنا) ---
 class StadiumCard extends StatelessWidget {
   final String name;
   final String price;
@@ -148,18 +159,15 @@ class StadiumCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // --- صورة الملعب ---
           Padding(
             padding: const EdgeInsets.fromLTRB(18, 18, 18, 15),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(6),
-              // --- 2. تم تغيير Image.network إلى Image.asset ---
               child: Image.asset(
                 imageUrl,
                 height: 101,
                 width: double.infinity,
                 fit: BoxFit.cover,
-                // في حالة حدوث خطأ في تحميل الصورة
                 errorBuilder: (context, error, stackTrace) {
                   return Container(
                     height: 101,
@@ -170,7 +178,6 @@ class StadiumCard extends StatelessWidget {
               ),
             ),
           ),
-          // --- اسم وسعر الملعب ---
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 19),
             child: Column(

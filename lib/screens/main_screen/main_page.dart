@@ -27,7 +27,6 @@ class MainPage extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-           
             const SizedBox(height: 30),
             
           // ignore: text_direction_code_point_in_literal

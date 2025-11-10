@@ -1,12 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:project/screens/Favorites/favorites_page.dart';
+import 'package:project/screens/My%20Reservations%20page/My%20Reservations%20page.dart';
+import 'package:project/screens/main_screen/Widget/stadiumCard.dart';
+import 'package:project/screens/main_screen/stadium_data.dart';
 // تأكد من أن هذا المسار صحيح
 import 'package:project/screens/main_screen/stadium_details.dart';
+import 'package:project/screens/notifications_page/notifications_page.dart';
+import 'package:project/screens/payment_history/payment_history_page.dart';
+import 'package:project/screens/profile/Profile.dart';
 
 import '../Registration process/login.dart';
 
-class MainPage extends StatelessWidget {
+class MainPage extends StatefulWidget {
   const MainPage({super.key});
+
+  @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
   void _showLogoutDialog(BuildContext context) {
   showDialog(
     context: context,
@@ -90,15 +103,9 @@ class MainPage extends StatelessWidget {
     },
   );
 }
+
   @override Widget build(BuildContext context) {
-    final List<Map<String, String>> stadiums = [
-      {'name': 'Al-Siteen Stadium', 'price': '\$100 / hour', 'image': 'assets/images/stadiums/1.png'},
-      {'name': 'Al-Amoudi Stadium', 'price': '\$15 / hour', 'image': 'assets/images/stadiums/2.png'},
-      {'name': 'Al-Siteen Stadium', 'price': '\$100 / hour', 'image': 'assets/images/stadiums/3.png'},
-      {'name': 'Al-Amoudi Stadium', 'price': '\$15 / hour', 'image': 'assets/images/stadiums/4.png'},
-      {'name': 'Al-Siteen Stadium', 'price': '\$100 / hour', 'image': 'assets/images/stadiums/5.png'},
-      {'name': 'Al-Amoudi Stadium', 'price': '\$15 / hour', 'image': 'assets/images/stadiums/6.png'},
-    ];
+
 
     return Scaffold(
       backgroundColor: const Color(0xFF319710),
@@ -154,53 +161,103 @@ class MainPage extends StatelessWidget {
               SizedBox(height: 24,),
                   Column(
                     children: [
-                      Row(
-                      children: const [
-                        SizedBox(width: 15,),
-                        Icon(Icons.calendar_month, size: 25, color: Color(0xFF173913)),
-                        SizedBox(width: 15,),
-                       Text('My Reservations', style: TextStyle(color:  Color(0xFF173913), fontSize: 20, fontWeight: FontWeight.bold)),
-                      ],
-                    ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const MyReservationsPage(),
+                            ),
+                          );
+                        },
+                        child: Row(
+                        children: const [
+                          SizedBox(width: 15,),
+                          Icon(Icons.calendar_month, size: 25, color: Color(0xFF173913)),
+                          SizedBox(width: 15,),
+                         Text('My Reservations', style: TextStyle(color:  Color(0xFF173913), fontSize: 20, fontWeight: FontWeight.bold)),
+                        ],
+                                            ),
+                      ),
                     SizedBox(height: 24,),
                     
-                      Row(
-                        
-                        
-                      children: const [
-                        SizedBox(width: 15,),
-                        Icon(Icons.person, size: 25, color:  Color(0xFF173913)),
-                        SizedBox(width: 15,),
-                       Text('Profile', style: TextStyle(color: Color(0xFF173913), fontSize: 20, fontWeight: FontWeight.bold)),
-                      ],
-                    ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Profile(),
+                            ),
+                          );
+                        },
+                        child: Row(
+                          
+                          
+                        children: const [
+                          SizedBox(width: 15,),
+                          Icon(Icons.person, size: 25, color:  Color(0xFF173913)),
+                          SizedBox(width: 15,),
+                         Text('Profile', style: TextStyle(color: Color(0xFF173913), fontSize: 20, fontWeight: FontWeight.bold)),
+                        ],
+                                            ),
+                      ),
                      SizedBox(height: 24,),
-                      Row(
-                      children: const [
-                        SizedBox(width: 15,),
-                        Icon(Icons.favorite_outline, size: 25, color:  Color(0xFF173913)),
-                        SizedBox(width: 15,),
-                       Text('Favorites', style: TextStyle(color: Color(0xFF173913), fontSize: 20, fontWeight: FontWeight.bold)),
-                      ],
-                    ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const FavoritesPage(),
+                            ),
+                          );
+                        },
+                        child: Row(
+                        children: const [
+                          SizedBox(width: 15,),
+                          Icon(Icons.favorite_outline, size: 25, color:  Color(0xFF173913)),
+                          SizedBox(width: 15,),
+                         Text('Favorites', style: TextStyle(color: Color(0xFF173913), fontSize: 20, fontWeight: FontWeight.bold)),
+                        ],
+                                            ),
+                      ),
                      SizedBox(height: 24,),
-                      Row(
-                      children: const [
-                        SizedBox(width: 15,),
-                        Icon(Icons.notifications_outlined, size: 25, color: Color(0xFF173913)),
-                        SizedBox(width: 15,),
-                       Text('Notifications', style: TextStyle(color: Color(0xFF173913), fontSize: 20, fontWeight: FontWeight.bold)),
-                      ],
-                    ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const NotificationsPage(),
+                            ),
+                          );
+                        },
+                        child: Row(
+                        children: const [
+                          SizedBox(width: 15,),
+                          Icon(Icons.notifications_outlined, size: 25, color: Color(0xFF173913)),
+                          SizedBox(width: 15,),
+                         Text('Notifications', style: TextStyle(color: Color(0xFF173913), fontSize: 20, fontWeight: FontWeight.bold)),
+                        ],
+                                            ),
+                      ),
                      SizedBox(height: 24,),
-                      Row(
-                      children: const [
-                        SizedBox(width: 15,),
-                        Icon(Icons.wallet, size: 25, color: Color(0xFF173913)),
-                        SizedBox(width: 15,),
-                       Text('Payment History', style: TextStyle(color:  Color(0xFF173913), fontSize: 20, fontWeight: FontWeight.bold)),
-                      ],
-                    ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const PaymentHistoryPage(),
+                            ),
+                          );
+                        },
+                        child: Row(
+                        children: const [
+                          SizedBox(width: 15,),
+                          Icon(Icons.wallet, size: 25, color: Color(0xFF173913)),
+                          SizedBox(width: 15,),
+                         Text('Payment History', style: TextStyle(color:  Color(0xFF173913), fontSize: 20, fontWeight: FontWeight.bold)),
+                        ],
+                                            ),
+                      ),
                      SizedBox(height: 390,),
                      InkWell(
   onTap: () => _showLogoutDialog(context), // عند الضغط على "Logout"
@@ -319,18 +376,24 @@ class MainPage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => StadiumDetailsPage(
-                              name: stadium['name']!,
+                            builder: (context) => StadiumDetailsPage( 
+                              name: stadium['name']!, 
                               price: stadium['price']!,
                               imageUrl: stadium['image']!,
                             ),
                           ),
                         );
                       },
-                      child: StadiumCard(
+                      child: StadiumCard( //استدعاء بطاقة الملعب
                         name: stadium['name']!,
                         price: stadium['price']!,
                         imageUrl: stadium['image']!,
+                        isFavorite: stadium['isFavorite'],
+                         onFavoritePressed: () {
+                          setState(() {
+                            stadium['isFavorite'] = !stadium['isFavorite'];
+                          });
+                        },
                       ),
                     );
                   },
@@ -345,86 +408,4 @@ class MainPage extends StatelessWidget {
 }
 
 // --- ويدجت مخصص لبطاقة الملعب (لا تغيير هنا) ---
-class StadiumCard extends StatelessWidget {
-  final String name;
-  final String price;
-  final String imageUrl;
 
-  const StadiumCard({
-    super.key,
-    required this.name,
-    required this.price,
-    required this.imageUrl,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0xFF319610),
-            blurRadius: 15.20,
-            offset: Offset(0, 6),
-            spreadRadius: -2,
-          )
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(18, 18, 18, 15),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(6),
-              child: Image.asset(
-                imageUrl,
-                height: 101,
-                width: double.infinity,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  return Container(
-                    height: 101,
-                    color: Colors.grey[200],
-                    child: const Icon(Icons.error, color: Colors.red),
-                  );
-                },
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 19),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  name,
-                  style: const TextStyle(
-                    color: Color(0xFF225022),
-                    fontSize: 16,
-                    fontFamily: 'Roboto',
-                    fontWeight: FontWeight.w700,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  price,
-                  style: const TextStyle(
-                    color: Color(0xFF329711),
-                    fontSize: 16,
-                    fontFamily: 'Roboto',
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}

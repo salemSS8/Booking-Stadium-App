@@ -49,7 +49,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           style: TextStyle(
                             color: Color(0xFFF8F8F8),
                             fontSize: 28,
-                            fontFamily: 'League Spartan',
+                            fontFamily: 'inter',
                             fontWeight: FontWeight.w700,
                           ),
                         ),
@@ -104,7 +104,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         TextSpan(
                           style: const TextStyle(
                             fontSize: 14,
-                            fontFamily: 'League Spartan',
+                            fontFamily: 'inter',
                             color: Color(0xFF391713),
                           ),
                           children: [
@@ -161,7 +161,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
-                            fontFamily: 'Poppins',
+                            fontFamily: 'inter',
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -174,8 +174,8 @@ class _SignUpPageState extends State<SignUpPage> {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Color(0xFF391713),
-                          fontSize: 12,
-                          fontFamily: 'League Spartan',
+                          fontSize: 14,
+                          fontFamily: 'inter',
                           fontWeight: FontWeight.w300,
                         ),
                       ),
@@ -203,7 +203,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         TextSpan(
                           style: const TextStyle(
                             fontSize: 14,
-                            fontFamily: 'League Spartan',
+                            fontFamily: 'inter',
                             color: Color(0xFF391713),
                           ),
                           children: [
@@ -250,7 +250,7 @@ class _SignUpPageState extends State<SignUpPage> {
           style: const TextStyle(
             color: Color(0xFF163913),
             fontSize: 16,
-            fontFamily: 'League Spartan',
+            fontFamily: 'inter',
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -267,8 +267,8 @@ class _SignUpPageState extends State<SignUpPage> {
             hintText: hint,
             hintStyle: const TextStyle(
               color: Color(0xFF163913),
-              fontSize: 16,
-              fontFamily: 'League Spartan',
+              fontSize: 14,
+              fontFamily: 'inter',
               fontWeight: FontWeight.w400,
             ),
             // suffixIcon: isPassword ? const Icon(Icons.visibility_off, color: Colors.grey) : null, // استبدال هذا السطر

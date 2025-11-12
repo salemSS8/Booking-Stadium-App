@@ -16,7 +16,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false, // يمنع تغيير حجم الواجهة عند ظهور لوحة المفاتيح
+      resizeToAvoidBottomInset:
+          false, // يمنع تغيير حجم الواجهة عند ظهور لوحة المفاتيح
       backgroundColor: const Color(0xFF319710), // اللون الأخضر للخلفية
       body: SafeArea(
         top: true,
@@ -25,12 +26,16 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
           children: [
             // 1. شريط العنوان العلوي مع أيقونة الرجوع
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 25.0),
+              padding: const EdgeInsets.symmetric(
+                vertical: 20.0,
+                horizontal: 25.0,
+              ),
               child: Row(
                 children: [
                   // أيقونة الرجوع
                   GestureDetector(
-                    onTap: () => Navigator.of(context).pop(), // للرجوع للشاشة السابقة
+                    onTap: () =>
+                        Navigator.of(context).pop(), // للرجوع للشاشة السابقة
                     child: const Icon(
                       Icons.arrow_back_ios,
                       color: Colors.white,
@@ -48,7 +53,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                           style: TextStyle(
                             color: Color(0xFFF8F8F8),
                             fontSize: 28,
-                            fontFamily: 'League Spartan',
+                            fontFamily: 'inter',
                             fontWeight: FontWeight.w700,
                           ),
                         ),
@@ -63,7 +68,10 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
             Expanded(
               child: Container(
                 width: double.infinity,
-                padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 30.0),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 40.0,
+                  vertical: 30.0,
+                ),
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -116,7 +124,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                         isPasswordVisible: _isConfirmPasswordVisible,
                         onToggleVisibility: () {
                           setState(() {
-                            _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
+                            _isConfirmPasswordVisible =
+                                !_isConfirmPasswordVisible;
                           });
                         },
                       ),
@@ -138,8 +147,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                           'Create New Password',
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 24,
-                            fontFamily: 'Poppins',
+                            fontSize: 18,
+                            fontFamily: 'inter',
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -170,7 +179,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
           label,
           style: const TextStyle(
             color: Color(0xFF163913),
-            fontSize: 20,
+            fontSize: 16,
             fontFamily: 'League Spartan',
             fontWeight: FontWeight.w500,
           ),
@@ -184,7 +193,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
             hintText: hint,
             hintStyle: const TextStyle(
               color: Color(0xFF163913),
-              fontSize: 18,
+              fontSize: 16,
               fontFamily: 'League Spartan',
               fontWeight: FontWeight.w400,
             ),
@@ -199,7 +208,10 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
               borderRadius: BorderRadius.circular(15),
               borderSide: BorderSide.none, // إزالة الحدود
             ),
-            contentPadding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+            contentPadding: const EdgeInsets.symmetric(
+              vertical: 12.0,
+              horizontal: 16.0,
+            ),
           ),
         ),
         const SizedBox(height: 25), // مسافة بعد كل حقل

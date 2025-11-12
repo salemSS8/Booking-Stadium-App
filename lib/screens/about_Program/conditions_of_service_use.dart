@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project/screens/about_Program/Privacy_Policy.dart';
 
-
-class Part3 extends StatelessWidget {
-  const Part3({super.key});
+class ConditionsOfServiceUse extends StatelessWidget {
+  const ConditionsOfServiceUse({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +60,7 @@ class Part3 extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(20),
                                 image: DecorationImage(
                                   image: AssetImage(
-                                    'assets/images/stadium.jpg',
+                                    'assets/images/privacyco/condition.jpg',
                                   ),
                                   fit: BoxFit.cover,
                                 ),
@@ -219,7 +218,7 @@ class Part3 extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => Part4(),
+                                  builder: (context) => PrivacyPolicy(),
                                 ),
                               );
                             },

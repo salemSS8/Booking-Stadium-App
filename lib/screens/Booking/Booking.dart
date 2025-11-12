@@ -102,7 +102,7 @@ class _DateTimeInputExampleState extends State<DateTimeInputExample> {
             padding: EdgeInsets.all(16),
             child: Text(
               'Select Duration (Hours)',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
           ),
           ...hours.map(
@@ -188,7 +188,7 @@ class _DateTimeInputExampleState extends State<DateTimeInputExample> {
               "Al-Amoudi Stadium",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 20,
+                fontSize: 28,
                 color: Colors.white,
               ),
             ),
@@ -222,12 +222,14 @@ class _DateTimeInputExampleState extends State<DateTimeInputExample> {
           padding: const EdgeInsets.all(14),
           child: Column(
             children: [
+              SizedBox(height: 20),
               // فورم التاريخ
               const Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Date:',
                   style: TextStyle(
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF1D5E08),
                   ),
@@ -289,6 +291,7 @@ class _DateTimeInputExampleState extends State<DateTimeInputExample> {
                 child: Text(
                   'Duration:',
                   style: TextStyle(
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF1D5E08),
                   ),
@@ -403,6 +406,7 @@ class _DateTimeInputExampleState extends State<DateTimeInputExample> {
                 child: Text(
                   'Price:',
                   style: TextStyle(
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF1D5E08),
                   ),
@@ -433,11 +437,13 @@ class _DateTimeInputExampleState extends State<DateTimeInputExample> {
                   children: [
                     const Icon(Icons.attach_money, color: Color(0xFF319710)),
                     const SizedBox(width: 8), // مسافة بسيطة بين الأيقونة والنص
-                    Text('${_price.toStringAsFixed(0)} YER / Hour', style: const TextStyle(
-                        fontSize: 15,
+                    Text(
+                      '${_price.toStringAsFixed(0)} YER / Hour',
+                      style: const TextStyle(
+                        fontSize: 16,
                         color: Color.fromARGB(255, 30, 94, 9),
-                      ),),
-                    
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -450,6 +456,7 @@ class _DateTimeInputExampleState extends State<DateTimeInputExample> {
                 child: Text(
                   'Commission:',
                   style: TextStyle(
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF1D5E08),
                   ),
@@ -499,6 +506,7 @@ class _DateTimeInputExampleState extends State<DateTimeInputExample> {
                 child: Text(
                   'Payment Method:',
                   style: TextStyle(
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF1D5E08),
                   ),
@@ -543,7 +551,7 @@ class _DateTimeInputExampleState extends State<DateTimeInputExample> {
                           const Text(
                             'Bank Transfer',
                             style: TextStyle(
-                              fontSize: 15,
+                              fontSize: 16,
                               color: Color(0xFF1D5E08),
                             ),
                           ),
@@ -566,7 +574,7 @@ class _DateTimeInputExampleState extends State<DateTimeInputExample> {
                           const Text(
                             'Credit Card',
                             style: TextStyle(
-                              fontSize: 15,
+                              fontSize: 16,
                               color: Color(0xFF1D5E08),
                             ),
                           ),
@@ -602,7 +610,7 @@ class _DateTimeInputExampleState extends State<DateTimeInputExample> {
                   const Text(
                     'I agree to the terms and conditions.',
                     style: TextStyle(
-                      fontSize: 15,
+                      fontSize: 16,
                       color: Color(0xFF1D5E08),
                       fontWeight: FontWeight.w500,
                     ),

@@ -35,9 +35,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
           // زر التخطي أو المتابعة
           Positioned(
-            bottom: _currentPage == onboardingData.length - 1
-                ? 100
-                : 50,
+            bottom: _currentPage == onboardingData.length - 1 ? 100 : 50,
             left: 20,
             right: 20,
             child: _currentPage == onboardingData.length - 1
@@ -47,7 +45,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
           // نقاط الترقيم (Indicators)
           Positioned(
-            bottom:70,
+            bottom: 70,
             left: 0,
             right: 0,
             child: Row(
@@ -93,7 +91,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           },
           child: const Text(
             'Skip',
-            style: TextStyle(color: Colors.grey, fontSize: 16),
+            style: TextStyle(color: Colors.grey, fontSize: 18),
           ),
         ),
         GestureDetector(
@@ -134,14 +132,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: const Color(0xFF319610),
-          padding: const EdgeInsets.symmetric(vertical: 16),
+          padding: const EdgeInsets.symmetric(vertical: 12),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
           ),
           elevation: 2,
         ),
         onPressed: () {
-          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const LoginPage()), (route) => false);
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => const LoginPage()),
+            (route) => false,
+          );
         },
         child: const Text(
           'Get Started',

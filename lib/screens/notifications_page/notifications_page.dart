@@ -34,10 +34,12 @@ class NotificationsPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color(0xFF319710),
         elevation: 0,
-        leading: IconButton(onPressed:()
-        {
-          Navigator.pop(context);
-        } , icon:Icon(Icons.arrow_back_ios, color: Colors.white)),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back_ios, color: Colors.white),
+        ),
         title: const Text(
           'Notifications',
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
@@ -90,7 +92,7 @@ class NotificationsPage extends StatelessWidget {
                       Text(
                         item['time']!,
                         style: const TextStyle(
-                          fontSize: 11,
+                          fontSize: 14,
                           color: Colors.black54,
                         ),
                       ),
@@ -100,7 +102,7 @@ class NotificationsPage extends StatelessWidget {
                   Text(
                     '${item['phone']} ${item['message']}',
                     style: const TextStyle(
-                      fontSize: 13,
+                      fontSize: 14,
                       color: Colors.black87,
                       height: 1.3,
                     ),

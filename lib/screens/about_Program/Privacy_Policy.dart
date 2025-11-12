@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Part4 extends StatelessWidget {
-  const Part4({super.key});
+class PrivacyPolicy extends StatelessWidget {
+  const PrivacyPolicy({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +58,9 @@ class Part4 extends StatelessWidget {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
                                 image: DecorationImage(
-                                  image: AssetImage('assets/images/image.jpg'),
+                                  image: AssetImage(
+                                    'assets/images/privacyco/privacy.jpg',
+                                  ),
                                   fit: BoxFit.cover,
                                 ),
                               ),

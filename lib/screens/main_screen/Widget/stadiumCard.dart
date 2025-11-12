@@ -20,7 +20,7 @@ class StadiumCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        decoration: BoxDecoration(
+      decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
         boxShadow: const [
@@ -29,7 +29,7 @@ class StadiumCard extends StatelessWidget {
             blurRadius: 15.20,
             offset: Offset(0, 6),
             spreadRadius: -2,
-          )
+          ),
         ],
       ),
       child: Column(
@@ -63,8 +63,7 @@ class StadiumCard extends StatelessWidget {
                   name,
                   style: const TextStyle(
                     color: Color(0xFF225022),
-                    fontSize: 16,
-                    fontFamily: 'Roboto',
+                    fontSize: 14,
                     fontWeight: FontWeight.w700,
                   ),
                   maxLines: 1,
@@ -78,18 +77,23 @@ class StadiumCard extends StatelessWidget {
                       price,
                       style: const TextStyle(
                         color: Color(0xFF329711),
-                        fontSize: 16,
-                        fontFamily: 'Roboto',
+                        fontSize: 14,
+
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    if(isFavorite)...[
-                      GestureDetector(onTap: onFavoritePressed,child: Icon(Icons.favorite, color: Colors.red,)),
-                    ]
-                    else ...[
-                      GestureDetector(onTap: onFavoritePressed,child: Icon(Icons.favorite_outline, color: Colors.red,)),
-                    ]
-                   //R IconButton(onPressed: (){}, icon:Icon(Icons.heart_broken_outlined,size: 20,))
+                    if (isFavorite) ...[
+                      GestureDetector(
+                        onTap: onFavoritePressed,
+                        child: Icon(Icons.favorite, color: Colors.red),
+                      ),
+                    ] else ...[
+                      GestureDetector(
+                        onTap: onFavoritePressed,
+                        child: Icon(Icons.favorite_outline, color: Colors.red),
+                      ),
+                    ],
+                    //R IconButton(onPressed: (){}, icon:Icon(Icons.heart_broken_outlined,size: 20,))
                   ],
                 ),
               ],

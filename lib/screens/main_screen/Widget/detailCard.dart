@@ -30,8 +30,8 @@ class DetailCard extends StatelessWidget {
             textAlign: TextAlign.center,
             style: const TextStyle(
               color: Color(0xFF4C4C4C),
-              fontSize: 16,
-              fontFamily: 'Inter',
+              fontSize: 15,
+
               fontWeight: FontWeight.w500,
             ),
             maxLines: 2,

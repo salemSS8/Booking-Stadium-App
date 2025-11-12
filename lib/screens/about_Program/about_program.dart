@@ -1,4 +1,7 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:project/screens/about_Program/Privacy_Policy.dart';
+import 'package:project/screens/about_Program/conditions_of_service_use.dart';
 
 class AboutProgram extends StatelessWidget {
   const AboutProgram({super.key});
@@ -47,7 +50,7 @@ class AboutProgram extends StatelessWidget {
                       children: [
                         CircleAvatar(
                           backgroundImage: AssetImage(
-                            'assets/images/bool2.jpg',
+                            'assets/images/privacyco/bool2.jpg',
                           ),
                           radius: 70,
                           backgroundColor: Colors.white,
@@ -68,38 +71,81 @@ class AboutProgram extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(22),
                             image: DecorationImage(
-                              image: AssetImage('assets/images/bool.jpg'),
+                              image: AssetImage(
+                                'assets/images/privacyco/bool.jpg',
+                              ),
                               fit: BoxFit.cover,
                             ),
                           ),
                         ),
                         SizedBox(height: 20),
-                        Text(
-                          'Conditions of service use',
-                          style: TextStyle(
-                            color: Color(0xff319710),
-                            fontSize: 17,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        SizedBox(height: 15),
                         Center(
-                          child: SizedBox(
-                            width: 312,
-                            child: Divider(
-                              color: Color(0xff319710),
-                              thickness: 1,
-                              height: 0,
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 10),
-                        Text(
-                          'Privacy policy',
-                          style: TextStyle(
-                            color: Color(0xff319710),
-                            fontSize: 17,
-                            fontWeight: FontWeight.w500,
+                          // يمكن استخدام Center بدلاً من Align(alignment: Alignment.center, child: ...)
+                          child: Column(
+                            mainAxisSize: MainAxisSize
+                                .min, // للحفاظ على حجم العمود بأقل قدر ممكن
+                            children: [
+                              // النص الأول: "Condition of service use"
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          ConditionsOfServiceUse(),
+                                    ),
+                                  );
+                                },
+                                child: const Text(
+                                  'Condition of service use',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Color(0xFF319710),
+                                    fontSize: 14,
+                                    fontFamily: 'League Spartan',
+                                    fontWeight: FontWeight.w600,
+                                    decoration: TextDecoration.underline,
+                                  ),
+                                ),
+                              ),
+
+                              // الخط الفاصل الذي طلبته: Divider
+                              const Padding(
+                                padding: EdgeInsets.symmetric(
+                                  vertical: 8.0,
+                                ), // إضافة مسافة فوق وتحت الفاصل
+                                child: Divider(
+                                  color: Color(0xFF319710), // لون الخط
+                                  height: 1, // ارتفاع الفاصل
+                                  thickness: 1, // سماكة الخط
+                                  indent: 50, // مسافة بادئة من اليسار
+                                  endIndent: 50, // مسافة بادئة من اليمين
+                                ),
+                              ),
+
+                              // النص الثاني: "Privacy Policy"
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => PrivacyPolicy(),
+                                    ),
+                                  );
+                                },
+                                child: const Text(
+                                  'Privacy Policy',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Color(0xFF319710),
+                                    fontSize: 16,
+                                    fontFamily: 'League Spartan',
+                                    fontWeight: FontWeight.w600,
+                                    decoration: TextDecoration.underline,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         SizedBox(height: 10),

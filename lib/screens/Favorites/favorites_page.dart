@@ -12,13 +12,18 @@ class FavoritesPage extends StatefulWidget {
 }
 
 class _FavoritesPageState extends State<FavoritesPage> {
-  final List favoriteStadiums = stadiums.where((stad) => stad['isFavorite'] == true).toList();
+  final List favoriteStadiums = stadiums
+      .where((stad) => stad['isFavorite'] == true)
+      .toList();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Favorites'),
+        title: const Text(
+          'Favorites',
+          style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+        ),
         foregroundColor: Colors.white,
         backgroundColor: const Color(0xFF319710),
         leading: IconButton(
@@ -26,44 +31,45 @@ class _FavoritesPageState extends State<FavoritesPage> {
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
-      body:
-      Expanded(
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30),
-                  ),
-                ),
-                child: GridView.builder(
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: favoriteStadiums.length,
-                  padding: const EdgeInsets.all(19.0),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 22,
-                    mainAxisSpacing: 22,
-                    childAspectRatio: 0.82,
-                  ),
-                  itemBuilder: (context, index) {
-                    final stadium = favoriteStadiums[index];
-                    return GestureDetector(
-                      child: StadiumCard(
-                        name: stadium['name']! as String,
-                        price: stadium['price']! as String,
-                        imageUrl: stadium['image']! as String,
-                        isFavorite: stadium['isFavorite'] as bool,
-                        onFavoritePressed: () {
-                          setState(() {
-                            stadium['isFavorite'] = !stadium['isFavorite'];
-                          });
-                        },
-                      ),
-                    );
+      body: Expanded(
+        child: Container(
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30),
+              topRight: Radius.circular(30),
+            ),
+          ),
+          child: GridView.builder(
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: favoriteStadiums.length,
+            padding: const EdgeInsets.all(19.0),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 22,
+              mainAxisSpacing: 22,
+              childAspectRatio: 0.82,
+            ),
+            itemBuilder: (context, index) {
+              final stadium = favoriteStadiums[index];
+              return GestureDetector(
+                child: StadiumCard(
+                  name: stadium['name']! as String,
+                  price: stadium['price']! as String,
+                  imageUrl: stadium['image']! as String,
+                  isFavorite: stadium['isFavorite'] as bool,
+                  onFavoritePressed: () {
+                    setState(() {
+                      stadium['isFavorite'] = !stadium['isFavorite'];
+                    });
                   },
-    ),),),);
-    
+                ),
+              );
+            },
+          ),
+        ),
+      ),
+    );
   }
 }

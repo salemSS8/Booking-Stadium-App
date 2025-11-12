@@ -67,7 +67,7 @@ class OnboardingPage extends StatelessWidget {
                 textAlign: TextAlign.center, // تأكد من أن النص في المنتصف
                 style: const TextStyle(
                   color: Color(0xFF319610),
-                  fontSize: 20,
+                  fontSize: 16,
                   fontFamily: 'Inter',
                   fontWeight: FontWeight.w700,
                 ),
@@ -89,7 +89,7 @@ class OnboardingPage extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Color(0xFF319610),
-                  fontSize: 20,
+                  fontSize: 16,
                   fontFamily: 'Inter',
                   fontWeight: FontWeight.w700,
                 ),

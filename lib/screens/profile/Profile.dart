@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 
-class Profile extends StatelessWidget {
+class Profile extends StatefulWidget {
   const Profile({super.key});
 
+  @override
+  State<Profile> createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
+  bool obscurePassword = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +61,9 @@ class Profile extends StatelessWidget {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(25),
                               image: const DecorationImage(
-                                image: AssetImage('assets/images/logo.png'),
+                                image: AssetImage(
+                                  'assets/images/logo/logo.png',
+                                ),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -97,7 +105,7 @@ class Profile extends StatelessWidget {
                         child: Text(
                           'Full Name',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 16,
                             fontWeight: FontWeight.w500,
                             color: Color(0xff173913),
                           ),
@@ -113,7 +121,7 @@ class Profile extends StatelessWidget {
                           keyboardType: TextInputType.name,
                           style: TextStyle(
                             color: Color(0xff173913),
-                            fontSize: 20,
+                            fontSize: 16,
                             fontWeight: FontWeight.w500,
                           ),
                           decoration: InputDecoration(
@@ -140,7 +148,7 @@ class Profile extends StatelessWidget {
                         child: Text(
                           'Password',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 16,
                             fontWeight: FontWeight.w500,
                             color: Color(0xff173913),
                           ),
@@ -150,44 +158,40 @@ class Profile extends StatelessWidget {
 
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: StatefulBuilder(
-                        builder: (context, setState) {
-                          bool obscurePassword = true;
-                          return TextFormField(
-                            obscureText: obscurePassword,
-                            initialValue: '123456',
-                            keyboardType: TextInputType.visiblePassword,
-                            style: TextStyle(
-                              color: Color(0xff173913),
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
+
+                      child: TextFormField(
+                        obscureText: obscurePassword,
+                        initialValue: '123456',
+                        keyboardType: TextInputType.visiblePassword,
+                        style: TextStyle(
+                          color: Color(0xff173913),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Color(0xffC7F6B8),
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 10,
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              obscurePassword
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              color: Color(0xff319710),
                             ),
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Color(0xffC7F6B8),
-                              contentPadding: const EdgeInsets.symmetric(
-                                horizontal: 12,
-                                vertical: 10,
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              suffixIcon: IconButton(
-                                icon: Icon(
-                                  obscurePassword
-                                      ? Icons.visibility_off
-                                      : Icons.visibility,
-                                  color: Color(0xff319710),
-                                ),
-                                onPressed: () {
-                                  setState(() {
-                                    obscurePassword = !obscurePassword;
-                                  });
-                                },
-                              ),
-                            ),
-                          );
-                        },
+                            onPressed: () {
+                              setState(() {
+                                obscurePassword = !obscurePassword;
+                              });
+                            },
+                          ),
+                        ),
                       ),
                     ),
 
@@ -199,7 +203,7 @@ class Profile extends StatelessWidget {
                         child: Text(
                           'Email',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 16,
                             fontWeight: FontWeight.w500,
                             color: Color(0xff173913),
                           ),
@@ -215,7 +219,7 @@ class Profile extends StatelessWidget {
                           keyboardType: TextInputType.emailAddress,
                           style: TextStyle(
                             color: Color(0xff173913),
-                            fontSize: 20,
+                            fontSize: 16,
                             fontWeight: FontWeight.w500,
                           ),
                           decoration: InputDecoration(
@@ -243,7 +247,7 @@ class Profile extends StatelessWidget {
                         child: Text(
                           'Mobile Number',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 16,
                             fontWeight: FontWeight.w500,
                             color: Color(0xff173913),
                           ),
@@ -259,7 +263,7 @@ class Profile extends StatelessWidget {
                           keyboardType: TextInputType.phone,
                           style: TextStyle(
                             color: Color(0xff173913),
-                            fontSize: 20,
+                            fontSize: 16,
                             fontWeight: FontWeight.w500,
                           ),
                           decoration: InputDecoration(
@@ -296,7 +300,7 @@ class Profile extends StatelessWidget {
                             "Update Profile",
                             style: TextStyle(
                               color: Color(0xffffffff),
-                              fontSize: 20,
+                              fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
                           ),

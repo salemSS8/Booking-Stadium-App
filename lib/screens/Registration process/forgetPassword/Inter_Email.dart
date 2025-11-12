@@ -8,7 +8,8 @@ class InterEmailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false, // يمنع تغيير حجم الواجهة عند ظهور لوحة المفاتيح
+      resizeToAvoidBottomInset:
+          false, // يمنع تغيير حجم الواجهة عند ظهور لوحة المفاتيح
       backgroundColor: const Color(0xFF319710), // اللون الأخضر للخلفية
       body: SafeArea(
         top: true,
@@ -17,12 +18,16 @@ class InterEmailPage extends StatelessWidget {
           children: [
             // شريط العنوان العلوي مع أيقونة الرجوع
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 25.0),
+              padding: const EdgeInsets.symmetric(
+                vertical: 20.0,
+                horizontal: 25.0,
+              ),
               child: Row(
                 children: [
                   // أيقونة الرجوع
                   GestureDetector(
-                    onTap: () => Navigator.of(context).pop(), // للرجوع للشاشة السابقة
+                    onTap: () =>
+                        Navigator.of(context).pop(), // للرجوع للشاشة السابقة
                     child: const Icon(
                       Icons.arrow_back_ios,
                       color: Colors.white,
@@ -55,7 +60,10 @@ class InterEmailPage extends StatelessWidget {
             Expanded(
               child: Container(
                 width: double.infinity,
-                padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 30.0),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 40.0,
+                  vertical: 30.0,
+                ),
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -91,7 +99,8 @@ class InterEmailPage extends StatelessWidget {
 
                       // --- الجزء الذي تم تعديله ---
                       // زر التأكيد
-                      Center( // للحفاظ على الزر في المنتصف
+                      Center(
+                        // للحفاظ على الزر في المنتصف
                         child: SizedBox(
                           width: 200, // تحديد عرض أصغر للزر
                           child: ElevatedButton(
@@ -99,7 +108,10 @@ class InterEmailPage extends StatelessWidget {
                               // عند النقر، انتقل إلى صفحة كود التحقق
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => const VerificationCodePage()),
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const VerificationCodePage(),
+                                ),
                               );
                             },
                             style: ElevatedButton.styleFrom(
@@ -113,8 +125,8 @@ class InterEmailPage extends StatelessWidget {
                               'Confirm',
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 24,
-                                fontFamily: 'Poppins',
+                                fontSize: 18,
+                                fontFamily: 'inter',
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -146,8 +158,8 @@ class InterEmailPage extends StatelessWidget {
           label,
           style: const TextStyle(
             color: Color(0xFF163913),
-            fontSize: 20,
-            fontFamily: 'League Spartan',
+            fontSize: 16,
+            fontFamily: 'inter',
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -160,15 +172,18 @@ class InterEmailPage extends StatelessWidget {
             hintText: hint,
             hintStyle: const TextStyle(
               color: Color(0xFF163913),
-              fontSize: 18,
-              fontFamily: 'League Spartan',
+              fontSize: 16,
+              fontFamily: 'inter',
               fontWeight: FontWeight.w400,
             ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
               borderSide: BorderSide.none, // إزالة الحدود
             ),
-            contentPadding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+            contentPadding: const EdgeInsets.symmetric(
+              vertical: 12.0,
+              horizontal: 16.0,
+            ),
           ),
         ),
         const SizedBox(height: 25), // مسافة بعد كل حقل

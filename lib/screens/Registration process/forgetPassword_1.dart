@@ -31,8 +31,8 @@ class ForgotPasswordScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 24,
-                      fontFamily: 'Rubik',
+                      fontSize: 16,
+                      fontFamily: 'inter',
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -96,7 +96,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                     style: TextStyle(
                       color: Color(0xFF319710),
                       fontSize: 16,
-                      fontFamily: 'Rubik',
+                      fontFamily: 'inter',
                       fontWeight: FontWeight.w600,
                     ),
                   ),

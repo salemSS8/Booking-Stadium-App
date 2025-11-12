@@ -26,7 +26,10 @@ class StadiumDetailsPage extends StatelessWidget {
           children: [
             // --- الشريط العلوي ---
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 12.0,
+              ),
               child: Row(
                 children: [
                   IconButton(
@@ -40,8 +43,8 @@ class StadiumDetailsPage extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         color: Color(0xFFF8F8F8),
-                        fontSize: 26,
-                        fontFamily: 'League Spartan',
+                        fontSize: 28,
+
                         fontWeight: FontWeight.w700,
                       ),
                     ),
@@ -71,7 +74,8 @@ class StadiumDetailsPage extends StatelessWidget {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(15.0),
                         // 3. استخدام صورة الملعب التي تم تمريرها
-                        child: Image.asset( // تم التغيير إلى Image.asset بما أن الصور محلية
+                        child: Image.asset(
+                          // تم التغيير إلى Image.asset بما أن الصور محلية
                           imageUrl,
                           height: 277,
                           fit: BoxFit.cover,
@@ -88,11 +92,17 @@ class StadiumDetailsPage extends StatelessWidget {
 
                       // --- صندوق التفاصيل ---
                       Container(
-                        padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 12.0,
+                          horizontal: 16.0,
+                        ),
                         decoration: BoxDecoration(
                           color: const Color(0x21D8D8D8),
                           borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: const Color(0xFFE9E9E9), width: 1),
+                          border: Border.all(
+                            color: const Color(0xFFE9E9E9),
+                            width: 1,
+                          ),
                         ),
                         child: Column(
                           children: [
@@ -101,8 +111,8 @@ class StadiumDetailsPage extends StatelessWidget {
                               '$name Details',
                               style: const TextStyle(
                                 color: Color(0xFF135F23),
-                                fontSize: 20,
-                                fontFamily: 'Inter',
+                                fontSize: 18,
+
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
@@ -142,7 +152,12 @@ class StadiumDetailsPage extends StatelessWidget {
                       // --- زر الحجز ---
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder:(context)=>DateTimeInputExample() ));
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DateTimeInputExample(),
+                            ),
+                          );
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFF319710),
@@ -155,8 +170,8 @@ class StadiumDetailsPage extends StatelessWidget {
                           'Book',
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 20,
-                            fontFamily: 'Poppins',
+                            fontSize: 18,
+
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -175,4 +190,3 @@ class StadiumDetailsPage extends StatelessWidget {
 }
 
 // --- ويدجت مساعد لبطاقات التفاصيل (تم تعديله) ---
-

@@ -76,6 +76,10 @@ flutter:
     - assets/images/stadiums/4.png
     - assets/images/stadiums/5.png
     - assets/images/stadiums/6.png
+    - assets/images/privacyco/privacy.jpg
+    - assets/images/privacyco/condition.jpg
+    - assets/images/privacyco/bool2.jpg
+    - assets/images/privacyco/bool.jpg
 
   #   - images/a_dot_ham.jpeg
 

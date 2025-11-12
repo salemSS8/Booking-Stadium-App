@@ -30,12 +30,19 @@ class PaymentHistoryPage extends StatelessWidget {
       backgroundColor: const Color(0xFF319710),
       appBar: AppBar(
         backgroundColor: const Color(0xFF319710),
-        leading: IconButton(onPressed:(){
-          Navigator.pop(context);
-        }, icon:  Icon(Icons.arrow_back_ios, color: Colors.white)),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back_ios, color: Colors.white),
+        ),
         title: const Text(
           'Payment History',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 28,
+          ),
         ),
         centerTitle: true,
         elevation: 0,

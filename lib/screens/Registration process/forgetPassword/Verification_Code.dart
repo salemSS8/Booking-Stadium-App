@@ -28,7 +28,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
       width: 56,
       height: 60,
       textStyle: const TextStyle(
-        fontSize: 22,
+        fontSize: 16,
         color: Color.fromRGBO(30, 60, 87, 1),
       ),
       decoration: BoxDecoration(
@@ -46,7 +46,10 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
           children: [
             // 3. شريط العنوان العلوي
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 25.0),
+              padding: const EdgeInsets.symmetric(
+                vertical: 20.0,
+                horizontal: 25.0,
+              ),
               child: Row(
                 children: [
                   GestureDetector(
@@ -66,7 +69,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                           style: TextStyle(
                             color: Color(0xFFF8F8F8),
                             fontSize: 28,
-                            fontFamily: 'League Spartan',
+                            fontFamily: 'inter',
                             fontWeight: FontWeight.w700,
                           ),
                         ),
@@ -80,7 +83,10 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
             Expanded(
               child: Container(
                 width: double.infinity,
-                padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 30.0),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 50.0,
+                  vertical: 30.0,
+                ),
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -104,7 +110,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                         style: TextStyle(
                           color: Color(0xFF1D5F08),
                           fontSize: 16,
-                          fontFamily: 'League Spartan',
+                          fontFamily: 'inter',
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -135,7 +141,9 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                             // الانتقال لصفحة إعادة تعيين كلمة المرور
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => const ResetPasswordPage()),
+                              MaterialPageRoute(
+                                builder: (context) => const ResetPasswordPage(),
+                              ),
                             );
                           },
                           style: ElevatedButton.styleFrom(
@@ -149,8 +157,8 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                             'Confirm',
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 24,
-                              fontFamily: 'Poppins',
+                              fontSize: 18,
+                              fontFamily: 'inter',
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -162,11 +170,13 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                         TextSpan(
                           style: const TextStyle(
                             fontSize: 14,
-                            fontFamily: 'League Spartan',
+                            fontFamily: 'inter',
                             color: Color(0xFF391713),
                           ),
                           children: [
-                            const TextSpan(text: "Didn't receive the code? \n"), // <-- تم التعديل هنا
+                            const TextSpan(
+                              text: "Didn't receive the code? \n",
+                            ), // <-- تم التعديل هنا
                             TextSpan(
                               text: 'Send Again',
                               style: const TextStyle(

@@ -45,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
                           style: TextStyle(
                             color: Color(0xFFF8F8F8),
                             fontSize: 28,
-                            fontFamily: 'League Spartan',
+                            fontFamily: 'inter',
                             fontWeight: FontWeight.w700,
                           ),
                         ),
@@ -79,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                         style: TextStyle(
                           color: Color(0xFF319710),
                           fontSize: 20,
-                          fontFamily: 'League Spartan',
+                          fontFamily: 'inter',
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -89,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                         style: TextStyle(
                           color: Color(0xFF1D5F08),
                           fontSize: 16,
-                          fontFamily: 'League Spartan',
+                          fontFamily: 'inter',
                           fontWeight: FontWeight.w300,
                           height: 1,
                         ),
@@ -102,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                         style: TextStyle(
                           color: Color(0xFF163913),
                           fontSize: 16,
-                          fontFamily: 'League Spartan',
+                          fontFamily: 'inter',
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -115,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
                           hintStyle: const TextStyle(
                             color: Color(0xFF163913),
                             fontSize: 16,
-                            fontFamily: 'League Spartan',
+                            fontFamily: 'inter',
                             fontWeight: FontWeight.w400,
                           ),
                           border: OutlineInputBorder(
@@ -136,7 +136,7 @@ class _LoginPageState extends State<LoginPage> {
                         style: TextStyle(
                           color: Color(0xFF163913),
                           fontSize: 16,
-                          fontFamily: 'League Spartan',
+                          fontFamily: 'inter',
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -151,7 +151,7 @@ class _LoginPageState extends State<LoginPage> {
                           hintStyle: const TextStyle(
                             color: Color(0xFF163913),
                             fontSize: 16,
-                            fontFamily: 'League Spartan',
+                            fontFamily: 'inter',
                             fontWeight: FontWeight.w400,
                           ),
                           suffixIcon: IconButton(
@@ -200,7 +200,7 @@ class _LoginPageState extends State<LoginPage> {
                             style: TextStyle(
                               color: Color(0xFF319710),
                               fontSize: 14,
-                              fontFamily: 'League Spartan',
+                              fontFamily: 'inter',
                               fontWeight: FontWeight.w500,
                               decoration: TextDecoration
                                   .underline, // اختياري: لتمييزه كرابط
@@ -238,7 +238,7 @@ class _LoginPageState extends State<LoginPage> {
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 18,
-                                fontFamily: 'Poppins',
+                                fontFamily: 'inter',
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -256,7 +256,7 @@ class _LoginPageState extends State<LoginPage> {
                           style: TextStyle(
                             color: Color(0xFF252525),
                             fontSize: 14,
-                            fontFamily: 'League Spartan',
+                            fontFamily: 'inter',
                             fontWeight: FontWeight.w300,
                           ),
                         ),
@@ -295,7 +295,7 @@ class _LoginPageState extends State<LoginPage> {
                                 style: TextStyle(
                                   color: Color(0xFF391713),
                                   fontSize: 14,
-                                  fontFamily: 'League Spartan',
+                                  fontFamily: 'inter',
                                   fontWeight: FontWeight.w300,
                                 ),
                               ),
@@ -304,7 +304,7 @@ class _LoginPageState extends State<LoginPage> {
                                 style: const TextStyle(
                                   color: Color(0xFF319710),
                                   fontSize: 14,
-                                  fontFamily: 'League Spartan',
+                                  fontFamily: 'inter',
                                   fontWeight: FontWeight.w600,
                                   decoration: TextDecoration.underline,
                                 ),

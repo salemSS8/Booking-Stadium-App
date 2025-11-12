@@ -28,7 +28,10 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             // الجزء العلوي الأخضر
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 50.0, horizontal: 25.0),
+              padding: const EdgeInsets.symmetric(
+                vertical: 50.0,
+                horizontal: 25.0,
+              ),
               child: Row(
                 children: [
                   //
@@ -56,7 +59,10 @@ class _LoginPageState extends State<LoginPage> {
             // الحاوية البيضاء الرئيسية
             Expanded(
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 30.0),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 40.0,
+                  vertical: 30.0,
+                ),
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -72,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
                         'Welcome',
                         style: TextStyle(
                           color: Color(0xFF319710),
-                          fontSize: 24,
+                          fontSize: 20,
                           fontFamily: 'League Spartan',
                           fontWeight: FontWeight.w600,
                         ),
@@ -95,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                         'Email or Mobile Number:',
                         style: TextStyle(
                           color: Color(0xFF163913),
-                          fontSize: 20,
+                          fontSize: 16,
                           fontFamily: 'League Spartan',
                           fontWeight: FontWeight.w500,
                         ),
@@ -108,7 +114,7 @@ class _LoginPageState extends State<LoginPage> {
                           hintText: 'example@email.com',
                           hintStyle: const TextStyle(
                             color: Color(0xFF163913),
-                            fontSize: 20,
+                            fontSize: 16,
                             fontFamily: 'League Spartan',
                             fontWeight: FontWeight.w400,
                           ),
@@ -116,7 +122,10 @@ class _LoginPageState extends State<LoginPage> {
                             borderRadius: BorderRadius.circular(13),
                             borderSide: BorderSide.none,
                           ),
-                          contentPadding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+                          contentPadding: const EdgeInsets.symmetric(
+                            vertical: 12.0,
+                            horizontal: 16.0,
+                          ),
                         ),
                       ),
                       const SizedBox(height: 20),
@@ -126,7 +135,7 @@ class _LoginPageState extends State<LoginPage> {
                         'Password:',
                         style: TextStyle(
                           color: Color(0xFF163913),
-                          fontSize: 20,
+                          fontSize: 16,
                           fontFamily: 'League Spartan',
                           fontWeight: FontWeight.w500,
                         ),
@@ -141,13 +150,15 @@ class _LoginPageState extends State<LoginPage> {
                           hintText: 'Password',
                           hintStyle: const TextStyle(
                             color: Color(0xFF163913),
-                            fontSize: 20,
+                            fontSize: 16,
                             fontFamily: 'League Spartan',
                             fontWeight: FontWeight.w400,
                           ),
                           suffixIcon: IconButton(
                             icon: Icon(
-                              _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                              _isPasswordVisible
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
                               color: Colors.grey,
                             ),
                             onPressed: () {
@@ -161,7 +172,10 @@ class _LoginPageState extends State<LoginPage> {
                             borderRadius: BorderRadius.circular(13),
                             borderSide: BorderSide.none,
                           ),
-                          contentPadding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+                          contentPadding: const EdgeInsets.symmetric(
+                            vertical: 12.0,
+                            horizontal: 16.0,
+                          ),
                         ),
                       ),
                       const SizedBox(height: 8),
@@ -174,7 +188,9 @@ class _LoginPageState extends State<LoginPage> {
                             // الانتقال إلى صفحة InterEmailPage
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => const InterEmailPage()),
+                              MaterialPageRoute(
+                                builder: (context) => const InterEmailPage(),
+                              ),
                             );
                             print('Navigating to Forget Password page...');
                           },
@@ -186,7 +202,8 @@ class _LoginPageState extends State<LoginPage> {
                               fontSize: 14,
                               fontFamily: 'League Spartan',
                               fontWeight: FontWeight.w500,
-                              decoration: TextDecoration.underline, // اختياري: لتمييزه كرابط
+                              decoration: TextDecoration
+                                  .underline, // اختياري: لتمييزه كرابط
                             ),
                           ),
                         ),
@@ -204,7 +221,9 @@ class _LoginPageState extends State<LoginPage> {
                               // استبدال الصفحة الحالية بالصفحة الرئيسية
                               Navigator.pushReplacement(
                                 context,
-                                MaterialPageRoute(builder: (context) => const MainPage()),
+                                MaterialPageRoute(
+                                  builder: (context) => const MainPage(),
+                                ),
                               );
                             },
                             style: ElevatedButton.styleFrom(
@@ -218,7 +237,7 @@ class _LoginPageState extends State<LoginPage> {
                               'Login',
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 24,
+                                fontSize: 18,
                                 fontFamily: 'Poppins',
                                 fontWeight: FontWeight.w600,
                               ),
@@ -247,14 +266,16 @@ class _LoginPageState extends State<LoginPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           _socialMediaIcon(
-                            imagePath: 'assets/images/Registration/google_icon.png',
+                            imagePath:
+                                'assets/images/Registration/google_icon.png',
                             onTap: () {
                               print('Google Sign-In Tapped');
                             },
                           ),
                           const SizedBox(width: 20),
                           _socialMediaIcon(
-                            imagePath: 'assets/images/Registration/facebook_icon.png',
+                            imagePath:
+                                'assets/images/Registration/facebook_icon.png',
                             onTap: () {
                               print('Facebook Sign-In Tapped');
                             },
@@ -291,7 +312,10 @@ class _LoginPageState extends State<LoginPage> {
                                   ..onTap = () {
                                     Navigator.push(
                                       context,
-                                      MaterialPageRoute(builder: (context) => const SignUpPage()),
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const SignUpPage(),
+                                      ),
                                     );
                                     print('Navigating to Sign Up page...');
                                   },
@@ -313,7 +337,10 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _socialMediaIcon({required String imagePath, required VoidCallback onTap}) {
+  Widget _socialMediaIcon({
+    required String imagePath,
+    required VoidCallback onTap,
+  }) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -326,11 +353,7 @@ class _LoginPageState extends State<LoginPage> {
             borderRadius: BorderRadius.circular(13),
           ),
         ),
-        child: Image.asset(
-          imagePath,
-          height: 25,
-          width: 25,
-        ),
+        child: Image.asset(imagePath, height: 25, width: 25),
       ),
     );
   }

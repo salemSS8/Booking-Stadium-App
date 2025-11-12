@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:project/screens/main_screen/main_page.dart';
 
 // 1. تحويل الويدجت إلى StatefulWidget
 class SignUpPage extends StatefulWidget {
@@ -25,7 +26,10 @@ class _SignUpPageState extends State<SignUpPage> {
           children: [
             // شريط العنوان العلوي
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 25.0),
+              padding: const EdgeInsets.symmetric(
+                vertical: 20.0,
+                horizontal: 25.0,
+              ),
               child: Row(
                 children: [
                   GestureDetector(
@@ -60,7 +64,10 @@ class _SignUpPageState extends State<SignUpPage> {
             Expanded(
               child: Container(
                 width: double.infinity,
-                padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 30.0),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 40.0,
+                  vertical: 30.0,
+                ),
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -75,31 +82,57 @@ class _SignUpPageState extends State<SignUpPage> {
                       // حقول الإدخال
                       _buildTextField(label: 'Full name:', hint: 'User Name'),
                       // استدعاء حقل كلمة المرور
-                      _buildTextField(label: 'Password:', hint: 'Password', isPassword: true),
-                      _buildTextField(label: 'Email:', hint: 'example@email.com', keyboardType: TextInputType.emailAddress),
-                      _buildTextField(label: 'Mobile Number:', hint: 'Enter your phone number', keyboardType: TextInputType.phone),
+                      _buildTextField(
+                        label: 'Password:',
+                        hint: 'Password',
+                        isPassword: true,
+                      ),
+                      _buildTextField(
+                        label: 'Email:',
+                        hint: 'example@email.com',
+                        keyboardType: TextInputType.emailAddress,
+                      ),
+                      _buildTextField(
+                        label: 'Mobile Number:',
+                        hint: 'Enter your phone number',
+                        keyboardType: TextInputType.phone,
+                      ),
                       const SizedBox(height: 20),
 
                       // نص الشروط والسياسات
                       Text.rich(
                         TextSpan(
                           style: const TextStyle(
-                            fontSize: 12,
+                            fontSize: 14,
                             fontFamily: 'League Spartan',
                             color: Color(0xFF391713),
                           ),
                           children: [
-                            const TextSpan(text: 'By continuing, you agree to \n '),
+                            const TextSpan(
+                              text: 'By continuing, you agree to \n ',
+                            ),
                             TextSpan(
                               text: 'Terms of Use',
-                              style: const TextStyle(color: Color(0xFF319710), fontWeight: FontWeight.w500),
-                              recognizer: TapGestureRecognizer()..onTap = () { print('Terms of Use Tapped'); },
+                              style: const TextStyle(
+                                color: Color(0xFF319710),
+                                fontWeight: FontWeight.w500,
+                              ),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  print('Terms of Use Tapped');
+                                },
                             ),
                             const TextSpan(text: ' and '),
                             TextSpan(
                               text: 'Privacy Policy.',
-                              style: const TextStyle(color: Color(0xFF319710), fontWeight: FontWeight.w500),
-                              recognizer: TapGestureRecognizer()..onTap = () { print('Privacy Policy Tapped'); },
+                              style: const TextStyle(
+                                color: Color(0xFF319710),
+                                fontWeight: FontWeight.w500,
+                              ),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  print('Privacy Policy Tapped');
+                                },
                             ),
                           ],
                         ),
@@ -109,7 +142,13 @@ class _SignUpPageState extends State<SignUpPage> {
 
                       // زر إنشاء الحساب
                       ElevatedButton(
-                        onPressed: () { /* منطق إنشاء الحساب هنا */ },
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => MainPage()),
+                          );
+                          /* منطق إنشاء الحساب هنا */
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFF319710),
                           padding: const EdgeInsets.symmetric(vertical: 12),
@@ -121,7 +160,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           'Sign Up',
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 24,
+                            fontSize: 18,
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w600,
                           ),
@@ -146,9 +185,15 @@ class _SignUpPageState extends State<SignUpPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          _socialMediaIcon(imagePath: 'assets/images/Registration/google_icon.png'),
+                          _socialMediaIcon(
+                            imagePath:
+                                'assets/images/Registration/google_icon.png',
+                          ),
                           const SizedBox(width: 20),
-                          _socialMediaIcon(imagePath: 'assets/images/Registration/facebook_icon.png'),
+                          _socialMediaIcon(
+                            imagePath:
+                                'assets/images/Registration/facebook_icon.png',
+                          ),
                         ],
                       ),
                       const SizedBox(height: 30),
@@ -157,7 +202,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       Text.rich(
                         TextSpan(
                           style: const TextStyle(
-                            fontSize: 12,
+                            fontSize: 14,
                             fontFamily: 'League Spartan',
                             color: Color(0xFF391713),
                           ),
@@ -165,10 +210,14 @@ class _SignUpPageState extends State<SignUpPage> {
                             const TextSpan(text: 'Already have an account? '),
                             TextSpan(
                               text: 'Log in',
-                              style: const TextStyle(color: Color(0xFF319710), fontWeight: FontWeight.w500),
-                              recognizer: TapGestureRecognizer()..onTap = () {
-                                Navigator.of(context).pop();
-                              },
+                              style: const TextStyle(
+                                color: Color(0xFF319710),
+                                fontWeight: FontWeight.w500,
+                              ),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  Navigator.of(context).pop();
+                                },
                             ),
                           ],
                         ),
@@ -200,7 +249,7 @@ class _SignUpPageState extends State<SignUpPage> {
           label,
           style: const TextStyle(
             color: Color(0xFF163913),
-            fontSize: 20,
+            fontSize: 16,
             fontFamily: 'League Spartan',
             fontWeight: FontWeight.w500,
           ),
@@ -208,7 +257,9 @@ class _SignUpPageState extends State<SignUpPage> {
         const SizedBox(height: 8),
         TextField(
           // obscureText: isPassword, // استبدال هذا السطر
-          obscureText: isPassword ? !_isPasswordVisible : false, // إخفاء النص فقط إذا كان حقل كلمة مرور وغير مرئي
+          obscureText: isPassword
+              ? !_isPasswordVisible
+              : false, // إخفاء النص فقط إذا كان حقل كلمة مرور وغير مرئي
           keyboardType: keyboardType,
           decoration: InputDecoration(
             filled: true,
@@ -216,31 +267,37 @@ class _SignUpPageState extends State<SignUpPage> {
             hintText: hint,
             hintStyle: const TextStyle(
               color: Color(0xFF163913),
-              fontSize: 18,
+              fontSize: 16,
               fontFamily: 'League Spartan',
               fontWeight: FontWeight.w400,
             ),
             // suffixIcon: isPassword ? const Icon(Icons.visibility_off, color: Colors.grey) : null, // استبدال هذا السطر
             suffixIcon: isPassword
-                ? IconButton( // تحويل الأيقونة إلى زر قابل للنقر
-              icon: Icon(
-                // تغيير شكل الأيقونة بناءً على الحالة
-                _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-                color: Colors.grey,
-              ),
-              onPressed: () {
-                // تحديث الحالة عند النقر على الأيقونة
-                setState(() {
-                  _isPasswordVisible = !_isPasswordVisible;
-                });
-              },
-            )
+                ? IconButton(
+                    // تحويل الأيقونة إلى زر قابل للنقر
+                    icon: Icon(
+                      // تغيير شكل الأيقونة بناءً على الحالة
+                      _isPasswordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                      color: Colors.grey,
+                    ),
+                    onPressed: () {
+                      // تحديث الحالة عند النقر على الأيقونة
+                      setState(() {
+                        _isPasswordVisible = !_isPasswordVisible;
+                      });
+                    },
+                  )
                 : null, // لا تظهر أيقونة إذا لم يكن حقل كلمة مرور
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
               borderSide: BorderSide.none,
             ),
-            contentPadding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+            contentPadding: const EdgeInsets.symmetric(
+              vertical: 12.0,
+              horizontal: 16.0,
+            ),
           ),
         ),
         const SizedBox(height: 20),
@@ -255,9 +312,7 @@ class _SignUpPageState extends State<SignUpPage> {
       padding: const EdgeInsets.all(8),
       decoration: ShapeDecoration(
         color: const Color(0xFFC7F6B8),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(13),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
       ),
       child: Image.asset(imagePath),
     );

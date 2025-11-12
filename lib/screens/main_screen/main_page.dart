@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project/screens/Favorites/favorites_page.dart';
 import 'package:project/screens/My%20Reservations%20page/My%20Reservations%20page.dart';
+import 'package:project/screens/about_Program/about_program.dart';
 import 'package:project/screens/main_screen/Widget/stadiumCard.dart';
 import 'package:project/screens/main_screen/stadium_data.dart';
 // تأكد من أن هذا المسار صحيح
@@ -237,8 +238,8 @@ class _MainPageState extends State<MainPage> {
                           SizedBox(width: 15,),
                          Text('Notifications', style: TextStyle(color: Color(0xFF173913), fontSize: 20, fontWeight: FontWeight.bold)),
                         ],
-                                            ),
-                      ),
+                        ),
+                       ),
                      SizedBox(height: 24,),
                       GestureDetector(
                         onTap: () {
@@ -256,9 +257,30 @@ class _MainPageState extends State<MainPage> {
                           SizedBox(width: 15,),
                          Text('Payment History', style: TextStyle(color:  Color(0xFF173913), fontSize: 20, fontWeight: FontWeight.bold)),
                         ],
-                                            ),
+                         ),
                       ),
-                     SizedBox(height: 390,),
+                     SizedBox(height: 24,),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const AboutProgram(),
+                            ),
+                          );
+                        },
+                        child: Row(
+                        children: const [
+                          SizedBox(width: 15,),
+                          Icon(Icons.info_outline, size: 25, color: Color(0xFF173913)),
+                          SizedBox(width: 15,),
+                         Text('About program', style: TextStyle(color:  Color(0xFF173913), fontSize: 20, fontWeight: FontWeight.bold)),
+                        ],
+                         ),
+                      ),
+                     SizedBox(height: 350,),
+
+
                      InkWell(
   onTap: () => _showLogoutDialog(context), // عند الضغط على "Logout"
   child: Row(

@@ -1,8 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:project/screens/Registration process/signUp.dart';
 import '../main_screen/main_page.dart';
 import 'forgetPassword/Inter_Email.dart';
+import '../../services/auth_service.dart';
+import '../../providers/user_provider.dart';
 
 // 1. تحويل الويدجت إلى StatefulWidget
 class LoginPage extends StatefulWidget {
@@ -15,6 +18,13 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   // 2. إضافة متغير حالة لرؤية كلمة المرور
   bool _isPasswordVisible = false;
+  final _formKey = GlobalKey<FormState>();
+  final _loginCtrl = TextEditingController();
+  final _passwordCtrl = TextEditingController();
+
+  String? _loginError;
+  String? _passwordError;
+  String? _serverError;
 
   @override
   Widget build(BuildContext context) {
@@ -107,25 +117,50 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       const SizedBox(height: 8),
-                      TextField(
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: const Color(0xFFC7F5B8),
-                          hintText: 'example@email.com',
-                          hintStyle: const TextStyle(
-                            color: Color(0xFF163913),
-                            fontSize: 16,
-                            fontFamily: 'inter',
-                            fontWeight: FontWeight.w400,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(13),
-                            borderSide: BorderSide.none,
-                          ),
-                          contentPadding: const EdgeInsets.symmetric(
-                            vertical: 12.0,
-                            horizontal: 16.0,
-                          ),
+                      Form(
+                        key: _formKey,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TextFormField(
+                              controller: _loginCtrl,
+                              decoration: InputDecoration(
+                                filled: true,
+                                fillColor: const Color(0xFFC7F5B8),
+                                hintText: 'example@email.com or 0123456789',
+                                hintStyle: const TextStyle(
+                                  color: Color(0xFF163913),
+                                  fontSize: 16,
+                                  fontFamily: 'inter',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(13),
+                                  borderSide: BorderSide.none,
+                                ),
+                                contentPadding: const EdgeInsets.symmetric(
+                                  vertical: 12.0,
+                                  horizontal: 16.0,
+                                ),
+                              ),
+                              onChanged: (v) {
+                                setState(() {
+                                  if (v.trim().isEmpty)
+                                    _loginError = 'This field is required';
+                                  else
+                                    _loginError = null;
+                                });
+                              },
+                            ),
+                            if (_loginError != null)
+                              Padding(
+                                padding: const EdgeInsets.only(top: 6.0),
+                                child: Text(
+                                  _loginError!,
+                                  style: const TextStyle(color: Colors.red),
+                                ),
+                              ),
+                          ],
                         ),
                       ),
                       const SizedBox(height: 20),
@@ -142,8 +177,9 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       const SizedBox(height: 8),
                       // --- 3. تفعيل أيقونة كلمة المرور ---
-                      TextField(
-                        obscureText: !_isPasswordVisible, // ربط الإخفاء بالحالة
+                      TextFormField(
+                        controller: _passwordCtrl,
+                        obscureText: !_isPasswordVisible,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: const Color(0xFFC7F5B8),
@@ -161,12 +197,9 @@ class _LoginPageState extends State<LoginPage> {
                                   : Icons.visibility_off,
                               color: Colors.grey,
                             ),
-                            onPressed: () {
-                              // تحديث الحالة عند النقر
-                              setState(() {
-                                _isPasswordVisible = !_isPasswordVisible;
-                              });
-                            },
+                            onPressed: () => setState(
+                              () => _isPasswordVisible = !_isPasswordVisible,
+                            ),
                           ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(13),
@@ -177,8 +210,36 @@ class _LoginPageState extends State<LoginPage> {
                             horizontal: 16.0,
                           ),
                         ),
+                        onChanged: (v) {
+                          setState(() {
+                            if (v.isEmpty)
+                              _passwordError = 'This field is required';
+                            else if (v.length < 6)
+                              _passwordError =
+                                  'Password must be at least 6 characters';
+                            else
+                              _passwordError = null;
+                          });
+                        },
                       ),
+                      if (_passwordError != null)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 6.0),
+                          child: Text(
+                            _passwordError!,
+                            style: const TextStyle(color: Colors.red),
+                          ),
+                        ),
                       const SizedBox(height: 8),
+
+                      if (_serverError != null)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 6.0),
+                          child: Text(
+                            _serverError!,
+                            style: const TextStyle(color: Colors.red),
+                          ),
+                        ),
 
                       // --- 4. تفعيل زر "forget password" ---
                       Align(
@@ -215,10 +276,44 @@ class _LoginPageState extends State<LoginPage> {
                         child: SizedBox(
                           width: 200,
                           child: ElevatedButton(
-                            // --- 2. تعديل هذا الجزء ---
-                            onPressed: () {
-                              // منطق تسجيل الدخول
-                              // استبدال الصفحة الحالية بالصفحة الرئيسية
+                            // login logic
+                            onPressed: () async {
+                              setState(() {
+                                _serverError = null;
+                              });
+                              final loginVal = _loginCtrl.text.trim();
+                              final passVal = _passwordCtrl.text;
+                              if (loginVal.isEmpty) {
+                                setState(
+                                  () => _loginError = 'This field is required',
+                                );
+                                return;
+                              }
+                              if (passVal.isEmpty) {
+                                setState(
+                                  () =>
+                                      _passwordError = 'This field is required',
+                                );
+                                return;
+                              }
+
+                              final user = await AuthService.login(
+                                loginVal,
+                                passVal,
+                              );
+                              if (user == null) {
+                                setState(
+                                  () => _serverError = 'Wrong credentials',
+                                );
+                                return;
+                              }
+                              // set provider user
+                              Provider.of<UserProvider>(
+                                context,
+                                listen: false,
+                              ).setUser(user);
+                              // navigate to main
+                              if (!mounted) return;
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(

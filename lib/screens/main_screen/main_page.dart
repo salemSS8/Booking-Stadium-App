@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../providers/user_provider.dart';
 import 'package:project/screens/Favorites/favorites_page.dart';
 import 'package:project/screens/My%20Reservations%20page/My%20Reservations%20page.dart';
 import 'package:project/screens/about_Program/about_program.dart';
@@ -78,13 +80,16 @@ class _MainPageState extends State<MainPage> {
                       backgroundColor: const Color(0xff319710),
                       fixedSize: Size(166, 37),
                     ),
-                    onPressed: () {
-                      Navigator.push(
+                    onPressed: () async {
+                      // clear provider and go to login
+                      Provider.of<UserProvider>(
+                        context,
+                        listen: false,
+                      ).clearUser();
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(builder: (context) => LoginPage()),
                       );
-                      // 🔹 هنا ضع كود تسجيل الخروج الفعلي مثلاً:
-                      // Navigator.pushReplacementNamed(context, '/login');
                     },
                     child: const Text(
                       'Yes',
@@ -138,7 +143,6 @@ class _MainPageState extends State<MainPage> {
                           ),
                         ),
 
-                        //const Icon(Icons.person, size: 40, color: Color(0xFFFFFFFF)),
                         CircleAvatar(
                           radius: 20,
                           backgroundImage: AssetImage(
@@ -151,20 +155,30 @@ class _MainPageState extends State<MainPage> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'Hamdi Jowad',
-                          style: TextStyle(
-                            color: Color(0xFFFFFFFF),
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        Consumer<UserProvider>(
+                          builder: (context, up, _) {
+                            final user = up.user;
+                            return Text(
+                              user?.fullName ?? 'Guest',
+                              style: const TextStyle(
+                                color: Color(0xFFFFFFFF),
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            );
+                          },
                         ),
-                        const Text(
-                          'Hamdi2000@gmail.com',
-                          style: TextStyle(
-                            color: Color(0xFFFFFFFF),
-                            fontSize: 12,
-                          ),
+                        Consumer<UserProvider>(
+                          builder: (context, up, _) {
+                            final user = up.user;
+                            return Text(
+                              user?.email ?? 'guest@example.com',
+                              style: const TextStyle(
+                                color: Color(0xFFFFFFFF),
+                                fontSize: 12,
+                              ),
+                            );
+                          },
                         ),
                       ],
                     ),

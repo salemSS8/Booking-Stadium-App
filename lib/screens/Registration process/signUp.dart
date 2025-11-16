@@ -1,18 +1,144 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:project/screens/main_screen/main_page.dart';
 
-// 1. تحويل الويدجت إلى StatefulWidget
+import 'login.dart';
+import '../../models/user.dart';
+import '../../services/auth_service.dart';
+
 class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+  const SignUpPage({Key? key}) : super(key: key);
 
   @override
   State<SignUpPage> createState() => _SignUpPageState();
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  // 2. إضافة متغير لتتبع حالة رؤية كلمة المرور
+  final _nameCtrl = TextEditingController();
+  final _emailCtrl = TextEditingController();
+  final _passwordCtrl = TextEditingController();
+  final _phoneCtrl = TextEditingController();
+
   bool _isPasswordVisible = false;
+
+  String? _nameError;
+  String? _emailError;
+  String? _passwordError;
+  String? _phoneError;
+
+  @override
+  void dispose() {
+    _nameCtrl.dispose();
+    _emailCtrl.dispose();
+    _passwordCtrl.dispose();
+    _phoneCtrl.dispose();
+    super.dispose();
+  }
+
+  TextStyle _labelStyle() => const TextStyle(
+    color: Color(0xFF163913),
+    fontSize: 16,
+    fontFamily: 'inter',
+    fontWeight: FontWeight.w500,
+  );
+
+  InputDecoration _inputDecoration(String hint) => InputDecoration(
+    filled: true,
+    fillColor: const Color(0xFFC7F6B8),
+    hintText: hint,
+    hintStyle: const TextStyle(
+      color: Color(0xFF163913),
+      fontSize: 14,
+      fontFamily: 'inter',
+      fontWeight: FontWeight.w400,
+    ),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(15),
+      borderSide: BorderSide.none,
+    ),
+    contentPadding: const EdgeInsets.symmetric(
+      vertical: 12.0,
+      horizontal: 16.0,
+    ),
+  );
+
+  void _validateName() {
+    final v = _nameCtrl.text.trim();
+    setState(() {
+      if (v.isEmpty)
+        _nameError = 'This field is required';
+      else if (v.length < 3)
+        _nameError = 'Full name must be at least 3 characters';
+      else
+        _nameError = null;
+    });
+  }
+
+  void _validateEmail() {
+    final v = _emailCtrl.text.trim();
+    final emailRegex = RegExp(r"^[\w-.]+@([\w-]+\.)+[\w-]{2,4}");
+    setState(() {
+      if (v.isEmpty)
+        _emailError = 'This field is required';
+      else if (!emailRegex.hasMatch(v))
+        _emailError = 'Please enter a valid email';
+      else
+        _emailError = null;
+    });
+  }
+
+  void _validatePassword() {
+    final v = _passwordCtrl.text;
+    setState(() {
+      if (v.isEmpty)
+        _passwordError = 'This field is required';
+      else if (v.length < 6)
+        _passwordError = 'Password must be at least 6 characters';
+      else
+        _passwordError = null;
+    });
+  }
+
+  void _validatePhone() {
+    final v = _phoneCtrl.text.trim();
+    final digitsOnly = RegExp(r'^[0-9]+$');
+    setState(() {
+      if (v.isEmpty)
+        _phoneError = 'This field is required';
+      else if (!digitsOnly.hasMatch(v))
+        _phoneError = 'Only numbers are allowed';
+      else if (v.length < 9)
+        _phoneError = 'Mobile number must be at least 9 digits';
+      else
+        _phoneError = null;
+    });
+  }
+
+  Future<void> _onSubmit() async {
+    _validateName();
+    _validateEmail();
+    _validatePassword();
+    _validatePhone();
+
+    if (_nameError == null &&
+        _emailError == null &&
+        _passwordError == null &&
+        _phoneError == null) {
+      final user = User(
+        fullName: _nameCtrl.text.trim(),
+        email: _emailCtrl.text.trim(),
+        password: _passwordCtrl.text,
+        phone: _phoneCtrl.text.trim(),
+      );
+
+      await AuthService.signUp(user);
+
+      if (!mounted) return;
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const LoginPage()),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +150,7 @@ class _SignUpPageState extends State<SignUpPage> {
         bottom: false,
         child: Column(
           children: [
-            // شريط العنوان العلوي
+            // top bar
             Padding(
               padding: const EdgeInsets.symmetric(
                 vertical: 20.0,
@@ -60,7 +186,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
             ),
 
-            // الحاوية البيضاء الرئيسية للنموذج
+            // form container
             Expanded(
               child: Container(
                 width: double.infinity,
@@ -79,76 +205,97 @@ class _SignUpPageState extends State<SignUpPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      // حقول الإدخال
-                      _buildTextField(label: 'Full name:', hint: 'User Name'),
-                      // استدعاء حقل كلمة المرور
-                      _buildTextField(
-                        label: 'Password:',
-                        hint: 'Password',
-                        isPassword: true,
+                      // Full name
+                      Text('Full name:', style: _labelStyle()),
+                      const SizedBox(height: 8),
+                      TextField(
+                        controller: _nameCtrl,
+                        decoration: _inputDecoration('User Name'),
+                        onChanged: (_) => _validateName(),
                       ),
-                      _buildTextField(
-                        label: 'Email:',
-                        hint: 'example@email.com',
+                      if (_nameError != null)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 6.0),
+                          child: Text(
+                            _nameError!,
+                            style: const TextStyle(color: Colors.red),
+                          ),
+                        ),
+                      const SizedBox(height: 16),
+
+                      // Password
+                      Text('Password:', style: _labelStyle()),
+                      const SizedBox(height: 8),
+                      TextField(
+                        controller: _passwordCtrl,
+                        obscureText: !_isPasswordVisible,
+                        decoration: _inputDecoration('Password').copyWith(
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _isPasswordVisible
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: Colors.grey,
+                            ),
+                            onPressed: () => setState(
+                              () => _isPasswordVisible = !_isPasswordVisible,
+                            ),
+                          ),
+                        ),
+                        onChanged: (_) => _validatePassword(),
+                      ),
+                      if (_passwordError != null)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 6.0),
+                          child: Text(
+                            _passwordError!,
+                            style: const TextStyle(color: Colors.red),
+                          ),
+                        ),
+                      const SizedBox(height: 16),
+
+                      // Email
+                      Text('Email:', style: _labelStyle()),
+                      const SizedBox(height: 8),
+                      TextField(
+                        controller: _emailCtrl,
                         keyboardType: TextInputType.emailAddress,
+                        decoration: _inputDecoration('example@email.com'),
+                        onChanged: (_) => _validateEmail(),
                       ),
-                      _buildTextField(
-                        label: 'Mobile Number:',
-                        hint: 'Enter your phone number',
+                      if (_emailError != null)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 6.0),
+                          child: Text(
+                            _emailError!,
+                            style: const TextStyle(color: Colors.red),
+                          ),
+                        ),
+                      const SizedBox(height: 16),
+
+                      // Mobile
+                      Text('Mobile Number:', style: _labelStyle()),
+                      const SizedBox(height: 8),
+                      TextField(
+                        controller: _phoneCtrl,
                         keyboardType: TextInputType.phone,
+                        decoration: _inputDecoration('Enter your phone number'),
+                        onChanged: (_) => _validatePhone(),
                       ),
+                      if (_phoneError != null)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 6.0),
+                          child: Text(
+                            _phoneError!,
+                            style: const TextStyle(color: Colors.red),
+                          ),
+                        ),
+
                       const SizedBox(height: 20),
 
-                      // نص الشروط والسياسات
-                      Text.rich(
-                        TextSpan(
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontFamily: 'inter',
-                            color: Color(0xFF391713),
-                          ),
-                          children: [
-                            const TextSpan(
-                              text: 'By continuing, you agree to \n ',
-                            ),
-                            TextSpan(
-                              text: 'Terms of Use',
-                              style: const TextStyle(
-                                color: Color(0xFF319710),
-                                fontWeight: FontWeight.w500,
-                              ),
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  print('Terms of Use Tapped');
-                                },
-                            ),
-                            const TextSpan(text: ' and '),
-                            TextSpan(
-                              text: 'Privacy Policy.',
-                              style: const TextStyle(
-                                color: Color(0xFF319710),
-                                fontWeight: FontWeight.w500,
-                              ),
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  print('Privacy Policy Tapped');
-                                },
-                            ),
-                          ],
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(height: 30),
-
-                      // زر إنشاء الحساب
+                      // Sign Up button
                       ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => MainPage()),
-                          );
-                          /* منطق إنشاء الحساب هنا */
-                        },
+                        onPressed: _onSubmit,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFF319710),
                           padding: const EdgeInsets.symmetric(vertical: 12),
@@ -166,22 +313,66 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                         ),
                       ),
+
                       const SizedBox(height: 20),
 
-                      // نص "or sign up with"
-                      const Text(
-                        'or sign up with',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Color(0xFF391713),
-                          fontSize: 14,
-                          fontFamily: 'inter',
-                          fontWeight: FontWeight.w300,
+                      // Terms
+                      Center(
+                        child: Column(
+                          children: [
+                            Text.rich(
+                              TextSpan(
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  fontFamily: 'inter',
+                                  color: Color(0xFF391713),
+                                ),
+                                children: [
+                                  const TextSpan(
+                                    text: 'By continuing, you agree to\n ',
+                                  ),
+                                  TextSpan(
+                                    text: 'Terms of Use',
+                                    style: const TextStyle(
+                                      color: Color(0xFF319710),
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () =>
+                                          debugPrint('Terms tapped'),
+                                  ),
+                                  const TextSpan(text: ' and '),
+                                  TextSpan(
+                                    text: 'Privacy Policy.',
+                                    style: const TextStyle(
+                                      color: Color(0xFF319710),
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () =>
+                                          debugPrint('Privacy tapped'),
+                                  ),
+                                ],
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(height: 12),
+                            const Text(
+                              'or sign up with',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Color(0xFF391713),
+                                fontSize: 14,
+                                fontFamily: 'inter',
+                                fontWeight: FontWeight.w300,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
+
                       const SizedBox(height: 15),
 
-                      // أيقونات التواصل الاجتماعي
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -196,33 +387,33 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                         ],
                       ),
+
                       const SizedBox(height: 30),
 
-                      // رابط تسجيل الدخول
-                      Text.rich(
-                        TextSpan(
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontFamily: 'inter',
-                            color: Color(0xFF391713),
-                          ),
-                          children: [
-                            const TextSpan(text: 'Already have an account? '),
-                            TextSpan(
-                              text: 'Log in',
-                              style: const TextStyle(
-                                color: Color(0xFF319710),
-                                fontWeight: FontWeight.w500,
-                              ),
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  Navigator.of(context).pop();
-                                },
+                      Center(
+                        child: Text.rich(
+                          TextSpan(
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontFamily: 'inter',
+                              color: Color(0xFF391713),
                             ),
-                          ],
+                            children: [
+                              const TextSpan(text: 'Already have an account? '),
+                              TextSpan(
+                                text: 'Log in',
+                                style: const TextStyle(
+                                  color: Color(0xFF319710),
+                                  fontWeight: FontWeight.w500,
+                                ),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () => Navigator.of(context).pop(),
+                              ),
+                            ],
+                          ),
                         ),
-                        textAlign: TextAlign.center,
                       ),
+
                       const SizedBox(height: 20),
                     ],
                   ),
@@ -232,76 +423,6 @@ class _SignUpPageState extends State<SignUpPage> {
           ],
         ),
       ),
-    );
-  }
-
-  // 3. تعديل دالة بناء حقل النص
-  Widget _buildTextField({
-    required String label,
-    required String hint,
-    bool isPassword = false,
-    TextInputType keyboardType = TextInputType.text,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: const TextStyle(
-            color: Color(0xFF163913),
-            fontSize: 16,
-            fontFamily: 'inter',
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        const SizedBox(height: 8),
-        TextField(
-          // obscureText: isPassword, // استبدال هذا السطر
-          obscureText: isPassword
-              ? !_isPasswordVisible
-              : false, // إخفاء النص فقط إذا كان حقل كلمة مرور وغير مرئي
-          keyboardType: keyboardType,
-          decoration: InputDecoration(
-            filled: true,
-            fillColor: const Color(0xFFC7F6B8),
-            hintText: hint,
-            hintStyle: const TextStyle(
-              color: Color(0xFF163913),
-              fontSize: 14,
-              fontFamily: 'inter',
-              fontWeight: FontWeight.w400,
-            ),
-            // suffixIcon: isPassword ? const Icon(Icons.visibility_off, color: Colors.grey) : null, // استبدال هذا السطر
-            suffixIcon: isPassword
-                ? IconButton(
-                    // تحويل الأيقونة إلى زر قابل للنقر
-                    icon: Icon(
-                      // تغيير شكل الأيقونة بناءً على الحالة
-                      _isPasswordVisible
-                          ? Icons.visibility
-                          : Icons.visibility_off,
-                      color: Colors.grey,
-                    ),
-                    onPressed: () {
-                      // تحديث الحالة عند النقر على الأيقونة
-                      setState(() {
-                        _isPasswordVisible = !_isPasswordVisible;
-                      });
-                    },
-                  )
-                : null, // لا تظهر أيقونة إذا لم يكن حقل كلمة مرور
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15),
-              borderSide: BorderSide.none,
-            ),
-            contentPadding: const EdgeInsets.symmetric(
-              vertical: 12.0,
-              horizontal: 16.0,
-            ),
-          ),
-        ),
-        const SizedBox(height: 20),
-      ],
     );
   }
 

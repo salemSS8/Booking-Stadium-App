@@ -18,21 +18,29 @@ class _FavoritesPageState extends State<FavoritesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFF319710),
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
           'Favorites',
-          style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: 24,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         foregroundColor: Colors.white,
         backgroundColor: const Color(0xFF319710),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new, color: Color(0xffffffff)),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back_ios, color: Colors.white),
         ),
       ),
       body: Expanded(
         child: Container(
+          height: 742,
           decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(

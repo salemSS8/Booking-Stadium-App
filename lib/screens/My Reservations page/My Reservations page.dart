@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:project/screens/main_screen/main_page.dart';
+import 'package:project/shared_reservations.dart';
 
 class MyReservationsPage extends StatelessWidget {
   const MyReservationsPage({super.key});
@@ -7,42 +8,52 @@ class MyReservationsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const green = Color(0xFF319710);
+    final reservations = SharedReservations().reservations;
 
-    final reservations = [
-      {
-        'image': 'images/football-stadium_1.jpg',
-        'name': 'Al-Manasa',
-        'price': '\$130',
-        'date': '12 October 2025',
-        'time': '7:00 - 9:00 PM',
-      },
-      {
-        'image': 'images/football-stadium_2.jpg',
-        'name': 'Al-Amoudi',
-        'price': '\$200',
-        'date': '26 September 2025',
-        'time': '4:00 - 6:00 PM',
-      },
-      {
-        'image': 'images/football-stadium_3.jpg',
-        'name': 'Al-Manasa',
-        'price': '\$150',
-        'date': '05 November 2025',
-        'time': '6:00 - 8:00 PM',
-      },
-    ];
+    // final reservations = [
+    //   {
+    //     'image': 'images/football-stadium_1.jpg',
+    //     'name': 'Al-Manasa',
+    //     'price': '\$130',
+    //     'date': '12 October 2025',
+    //     'time': '7:00 - 9:00 PM',
+    //   },
+    //   {
+    //     'image': 'images/football-stadium_2.jpg',
+    //     'name': 'Al-Amoudi',
+    //     'price': '\$200',
+    //     'date': '26 September 2025',
+    //     'time': '4:00 - 6:00 PM',
+    //   },
+    //   {
+    //     'image': 'images/football-stadium_3.jpg',
+    //     'name': 'Al-Manasa',
+    //     'price': '\$150',
+    //     'date': '05 November 2025',
+    //     'time': '6:00 - 8:00 PM',
+    //   },
+    // ];
 
     return Scaffold(
       backgroundColor: green,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+
         backgroundColor: green,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => MainPage()),
+          ),
         ),
         title: const Text(
           'My Reservations',
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
         ),
         centerTitle: true,
       ),

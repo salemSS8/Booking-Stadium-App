@@ -16,7 +16,7 @@ class ConditionsOfServiceUse extends StatelessWidget {
 
           style: TextStyle(
             color: Color(0xffffffff),
-            fontSize: 20,
+            fontSize: 24,
             fontWeight: FontWeight.bold,
           ),
         )),
@@ -29,7 +29,7 @@ class ConditionsOfServiceUse extends StatelessWidget {
       ),
 
       body: Padding(
-        padding: const EdgeInsets.only(top: 20.0), // مسافة من بعد الـ AppBar
+        padding: const EdgeInsets.only(top: 7.0), // مسافة من بعد الـ AppBar
         child: Column(
           children: [
             Expanded(

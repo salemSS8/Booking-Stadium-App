@@ -15,7 +15,7 @@ class AboutProgram extends StatelessWidget {
         title: Text(
           'About Program',
           style: TextStyle(
-            fontSize: 25,
+            fontSize: 24,
             fontWeight: FontWeight.bold,
             color: Color(0xffffffff),
           ),

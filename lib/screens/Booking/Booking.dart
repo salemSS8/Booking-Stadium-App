@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:project/screens/My%20Reservations%20page/My%20Reservations%20page.dart';
+import 'package:project/shared_reservations.dart';
 
-class DateTimeInputExample extends StatefulWidget {
-  const DateTimeInputExample({super.key});
+class Booking extends StatefulWidget {
+  final String image;
+
+  final String name;
+  const Booking({super.key, required this.image, required this.name});
 
   @override
-  State<DateTimeInputExample> createState() => _DateTimeInputExampleState();
+  State<Booking> createState() => _DateTimeInputExampleState();
 }
 
-class _DateTimeInputExampleState extends State<DateTimeInputExample> {
+class _DateTimeInputExampleState extends State<Booking> {
   DateTime? _selectedDate;
   int? _selectedDuration; // عدد الساعات
   TimeOfDay? _startTime;
@@ -36,7 +41,6 @@ class _DateTimeInputExampleState extends State<DateTimeInputExample> {
     setState(() {});
   }
 
-  // دالة لتنسيق التاريخ
   String formatDate(DateTime d) {
     final months = [
       'January',
@@ -182,10 +186,10 @@ class _DateTimeInputExampleState extends State<DateTimeInputExample> {
       appBar: AppBar(
         backgroundColor: const Color(0xFF319710),
         centerTitle: true,
-        title: const Column(
+        title: Column(
           children: [
             Text(
-              "Al-Amoudi Stadium",
+              widget.name,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 28,
@@ -438,7 +442,7 @@ class _DateTimeInputExampleState extends State<DateTimeInputExample> {
                     const Icon(Icons.attach_money, color: Color(0xFF319710)),
                     const SizedBox(width: 8), // مسافة بسيطة بين الأيقونة والنص
                     Text(
-                      '${_price.toStringAsFixed(0)} YER / Hour',
+                      '${_price.toStringAsFixed(0)} YER',
                       style: const TextStyle(
                         fontSize: 16,
                         color: Color.fromARGB(255, 30, 94, 9),
@@ -624,13 +628,6 @@ class _DateTimeInputExampleState extends State<DateTimeInputExample> {
                 width: double.infinity,
                 height: 55,
                 child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF319710),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    elevation: 5,
-                  ),
                   onPressed:
                       (_selectedDate != null &&
                           _selectedDuration != null &&
@@ -639,21 +636,41 @@ class _DateTimeInputExampleState extends State<DateTimeInputExample> {
                           _selectedPayment != null &&
                           _agreeToTerms)
                       ? () {
-                          // هنا يتم تنفيذ عملية التأكيد بعد تحقق جميع الشروط
+                          SharedReservations().reservations.add({
+                            'image': widget.image,
+                            'name': widget.name,
+                            'price': '${_price.toStringAsFixed(0)} YER',
+                            'date': formatDate(_selectedDate!),
+                            'time':
+                                '${formatTime(_startTime!)} - ${formatTime(_endTime!)}',
+                          });
+
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MyReservationsPage(),
+                            ),
+                            (route) => false,
+                          );
+
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
-                              content: Text('Booking Confirmed Successfully ✅'),
+                              content: Text('Booking Saved Successfully ✅'),
                               backgroundColor: Colors.green,
                             ),
                           );
                         }
-                      : null, // إذا لم تتحقق الشروط يبقى الزر معطلاً
+                      : null,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xff319710),
+                    minimumSize: const Size(double.infinity, 50),
+                  ),
                   child: const Text(
-                    'Confirm Booking',
+                    "Confirm Booking",
                     style: TextStyle(
+                      color: Color(0xffffffff),
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
                     ),
                   ),
                 ),

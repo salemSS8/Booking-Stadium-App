@@ -18,7 +18,7 @@ class _ProfileState extends State<Profile> {
         title: Text(
           'My profile',
           style: TextStyle(
-            fontSize: 28,
+            fontSize: 24,
             fontWeight: FontWeight.bold,
 
             color: const Color(0xffffffff),

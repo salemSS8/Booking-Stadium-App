@@ -53,6 +53,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               children: _buildPageIndicator(),
             ),
           ),
+          SizedBox(height: 20),
         ],
       ),
     );
@@ -129,6 +130,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget _buildGetStartedButton() {
     return SizedBox(
       width: double.infinity,
+      height: 45,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: const Color(0xFF319610),
@@ -145,6 +147,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             (route) => false,
           );
         },
+
         child: const Text(
           'Get Started',
           style: TextStyle(

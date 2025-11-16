@@ -142,7 +142,7 @@ class _MainPageState extends State<MainPage> {
                         CircleAvatar(
                           radius: 20,
                           backgroundImage: AssetImage(
-                            'assets/images/logo/logo.png',
+                            'assets/images/onboarding/profile.png',
                           ),
                         ),
                       ],
@@ -381,7 +381,7 @@ class _MainPageState extends State<MainPage> {
           children: [
             // --- شريط البحث العلوي ---
             Padding(
-              padding: const EdgeInsets.fromLTRB(21, 10, 18, 10),
+              padding: const EdgeInsets.fromLTRB(19, 10, 18, 10),
               child: Row(
                 children: [
                   Builder(
@@ -391,8 +391,8 @@ class _MainPageState extends State<MainPage> {
                           Scaffold.of(context).openDrawer();
                         },
                         child: Container(
-                          width: 44,
-                          height: 44,
+                          width: 46,
+                          height: 46,
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(20),
@@ -405,7 +405,7 @@ class _MainPageState extends State<MainPage> {
                       );
                     },
                   ),
-                  const SizedBox(width: 27),
+                  SizedBox(width: 15),
                   Expanded(
                     child: TextField(
                       style: const TextStyle(
@@ -449,7 +449,7 @@ class _MainPageState extends State<MainPage> {
                 ],
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 7),
 
             // --- محتوى الصفحة الأبيض ---
             Expanded(
@@ -482,6 +482,10 @@ class _MainPageState extends State<MainPage> {
                               name: stadium['name']!,
                               price: stadium['price']!,
                               imageUrl: stadium['image']!,
+                              location: stadium['location'],
+                              capacity: stadium['capacity'],
+                              startDate: stadium['startDate'],
+                              endDate: stadium['endDate'],
                             ),
                           ),
                         );

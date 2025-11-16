@@ -42,7 +42,11 @@ class NotificationsPage extends StatelessWidget {
         ),
         title: const Text(
           'Notifications',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: 24,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
       ),

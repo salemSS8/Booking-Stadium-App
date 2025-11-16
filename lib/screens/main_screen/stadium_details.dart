@@ -6,6 +6,10 @@ class StadiumDetailsPage extends StatelessWidget {
   // 1. إضافة المتغيرات لاستقبال البيانات
   final String name;
   final String price;
+  final int capacity;
+  final String location;
+  final TimeOfDay startDate;
+  final TimeOfDay endDate;
   final String imageUrl;
 
   // 2. تحديث الـ constructor ليكون مطلوبًا
@@ -14,6 +18,10 @@ class StadiumDetailsPage extends StatelessWidget {
     required this.name,
     required this.price,
     required this.imageUrl,
+    required this.capacity,
+    required this.location,
+    required this.startDate,
+    required this.endDate,
   });
 
   @override
@@ -132,15 +140,16 @@ class StadiumDetailsPage extends StatelessWidget {
                                 ),
                                 DetailCard(
                                   icon: Icons.stadium,
-                                  text: '11 Players in Team',
+                                  text: '$capacity Players in Team',
                                 ),
                                 DetailCard(
                                   icon: Icons.date_range,
-                                  text: '8:00 - 23:00',
+                                  text:
+                                      '${startDate.hour}:${startDate.minute} - ${endDate.hour}:${endDate.minute}',
                                 ),
                                 DetailCard(
                                   icon: Icons.location_on,
-                                  text: 'Mukalla 3A',
+                                  text: location,
                                 ),
                               ],
                             ),
@@ -155,9 +164,55 @@ class StadiumDetailsPage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => DateTimeInputExample(),
+                              builder: (context) =>
+                                  Booking(name: name, image: imageUrl),
                             ),
                           );
+                          // Navigator.pushReplacement(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => Booking(
+                          //       name: 'Al-Siteen Stadium',
+                          //       image: 'assets/images/stadiums/1.png',
+                          //     ),
+                          //   ),
+                          // );
+                          // Navigator.pushReplacement(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => Booking(
+                          //       name: 'Al-Amoudi Stadium',
+                          //       image: 'assets/images/stadiums/2.png',
+                          //     ),
+                          //   ),
+                          // );
+                          // Navigator.pushReplacement(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => Booking(
+                          //       name: 'Al-Shafei Stadium',
+                          //       image: 'assets/images/stadiums/3.png',
+                          //     ),
+                          //   ),
+                          // );
+                          // Navigator.pushReplacement(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => Booking(
+                          //       name: 'Al-Amoudi Stadium',
+                          //       image: 'assets/images/stadiums/6.png',
+                          //     ),
+                          //   ),
+                          // );
+                          // Navigator.pushReplacement(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => Booking(
+                          //       name: 'Al-Monash Stadium',
+                          //       image: 'assets/images/stadiums/5.png',
+                          //     ),
+                          //   ),
+                          // );
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFF319710),

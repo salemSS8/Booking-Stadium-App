@@ -342,7 +342,7 @@ class _DateTimeInputExampleState extends State<DateTimeInputExample> {
                 ),
               ),
 
-              const SizedBox(height: 12),
+              const SizedBox(height: 17),
 
               // فورم وقت البداية
               InkWell(
@@ -350,7 +350,7 @@ class _DateTimeInputExampleState extends State<DateTimeInputExample> {
                 child: Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 12,
-                    vertical: 10,
+                    vertical: 13,
                   ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
@@ -362,7 +362,7 @@ class _DateTimeInputExampleState extends State<DateTimeInputExample> {
                         ? 'From --:--'
                         : 'From ${formatTime(_startTime!)}',
                     style: const TextStyle(
-                      fontSize: 16,
+                      fontSize: 18,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
@@ -370,7 +370,7 @@ class _DateTimeInputExampleState extends State<DateTimeInputExample> {
                 ),
               ),
 
-              const SizedBox(height: 7),
+              const SizedBox(height: 10),
 
               // فورم وقت النهاية
               InkWell(
@@ -378,7 +378,7 @@ class _DateTimeInputExampleState extends State<DateTimeInputExample> {
                 child: Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 12,
-                    vertical: 10,
+                    vertical: 13,
                   ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
@@ -390,7 +390,7 @@ class _DateTimeInputExampleState extends State<DateTimeInputExample> {
                         ? 'Until --:--'
                         : 'Until ${formatTime(_endTime!)}',
                     style: const TextStyle(
-                      fontSize: 16,
+                      fontSize: 18,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
@@ -398,7 +398,7 @@ class _DateTimeInputExampleState extends State<DateTimeInputExample> {
                 ),
               ),
 
-              const SizedBox(height: 3),
+              const SizedBox(height: 7),
 
               // فورم السعر
               const Align(
@@ -448,7 +448,7 @@ class _DateTimeInputExampleState extends State<DateTimeInputExample> {
                 ),
               ),
 
-              const SizedBox(height: 10),
+              const SizedBox(height: 13),
 
               // فورم العمولة
               const Align(
@@ -498,7 +498,7 @@ class _DateTimeInputExampleState extends State<DateTimeInputExample> {
                 ),
               ),
 
-              const SizedBox(height: 8),
+              const SizedBox(height: 11),
 
               // فورم اختيار طريقة الدفع
               const Align(
@@ -585,7 +585,7 @@ class _DateTimeInputExampleState extends State<DateTimeInputExample> {
                 ),
               ),
 
-              const SizedBox(height: 0),
+              const SizedBox(height: 3),
 
               // نص الموافقة على الشروط ومربع الموافقة
               Row(
@@ -617,11 +617,12 @@ class _DateTimeInputExampleState extends State<DateTimeInputExample> {
                   ),
                 ],
               ),
+              // SizedBox(height: 15),
 
               // زر تأكيد الحجز
               SizedBox(
                 width: double.infinity,
-                height: 45,
+                height: 55,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF319710),

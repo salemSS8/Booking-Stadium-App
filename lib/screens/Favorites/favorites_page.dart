@@ -62,11 +62,29 @@ class _FavoritesPageState extends State<FavoritesPage> {
             itemBuilder: (context, index) {
               final stadium = favoriteStadiums[index];
               return GestureDetector(
+                onTap: () {
+                  // --- تم الإصلاح هنا: تمرير البيانات إلى صفحة التفاصيل ---
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => StadiumDetailsPage(
+                        name: stadium['name']!,
+                        price: stadium['price']!,
+                        imageUrl: stadium['image']!,
+                        location: stadium['location'],
+                        capacity: stadium['capacity'],
+                        startDate: stadium['startDate'],
+                        endDate: stadium['endDate'],
+                      ),
+                    ),
+                  );
+                },
                 child: StadiumCard(
-                  name: stadium['name']! as String,
-                  price: stadium['price']! as String,
-                  imageUrl: stadium['image']! as String,
-                  isFavorite: stadium['isFavorite'] as bool,
+                  //استدعاء بطاقة الملعب
+                  name: stadium['name']!,
+                  price: stadium['price']!,
+                  imageUrl: stadium['image']!,
+                  isFavorite: stadium['isFavorite'],
                   onFavoritePressed: () {
                     setState(() {
                       stadium['isFavorite'] = !stadium['isFavorite'];

@@ -8,21 +8,21 @@ class PaymentHistoryPage extends StatelessWidget {
     final payments = [
       {
         'title': 'Al-Amoudi Stadium',
-        'time': '7:00 - 9:00 PM',
+        'time': '7:00 - 11:00 PM',
         'date': '15 Sept 2025',
-        'amount': '\$20000',
+        'amount': '8000 YER',
       },
       {
         'title': 'Al-Bander Stadium',
         'time': '10:00 - 11:00 PM',
         'date': '23 Nov 2025',
-        'amount': '\$10000',
+        'amount': '2000 YER',
       },
       {
         'title': 'Al-Shafei Stadium',
-        'time': '4:00 - 6:00 PM',
+        'time': '4:00 - 7:00 PM',
         'date': '4 May 2025',
-        'amount': '\$15000',
+        'amount': '6000 YER',
       },
     ];
 

@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart'; // 1. استيراد مكتبة pinput
-import 'package:project/screens/Registration%20process/forgetPassword/Reset_Password.dart'; // استيراد صفحة إعادة تعيين كلمة المرور
+import 'package:ArenaBook/screens/Registration%20process/forgetPassword/Reset_Password.dart'; // استيراد صفحة إعادة تعيين كلمة المرور
 
 class VerificationCodePage extends StatefulWidget {
   const VerificationCodePage({super.key});

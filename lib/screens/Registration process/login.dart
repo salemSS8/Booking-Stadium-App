@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:project/screens/Registration process/signUp.dart';
+import 'package:ArenaBook/screens/Registration process/signUp.dart';
 import '../main_screen/main_page.dart';
 import 'forgetPassword/Inter_Email.dart';
 import '../../services/auth_service.dart';

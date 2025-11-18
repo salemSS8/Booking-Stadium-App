@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:project/screens/main_screen/Widget/stadiumCard.dart';
-import 'package:project/screens/main_screen/main_page.dart';
-import 'package:project/screens/main_screen/stadium_data.dart';
-import 'package:project/screens/main_screen/stadium_details.dart';
+import 'package:ArenaBook/screens/main_screen/Widget/stadiumCard.dart';
+import 'package:ArenaBook/screens/main_screen/main_page.dart';
+import 'package:ArenaBook/screens/main_screen/stadium_data.dart';
+import 'package:ArenaBook/screens/main_screen/stadium_details.dart';
 
 class FavoritesPage extends StatefulWidget {
   const FavoritesPage({super.key});

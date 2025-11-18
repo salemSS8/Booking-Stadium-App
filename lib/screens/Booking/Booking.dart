@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:project/screens/My%20Reservations%20page/My%20Reservations%20page.dart';
-import 'package:project/shared_reservations.dart';
+import 'package:ArenaBook/screens/My%20Reservations%20page/My%20Reservations%20page.dart';
+import 'package:ArenaBook/shared_reservations.dart';
 
 class Booking extends StatefulWidget {
-  final String image;
+  final String image; // متغير للصورة
+  final String name; // متغير للاسم
 
-  final String name;
   const Booking({super.key, required this.image, required this.name});
 
   @override
-  State<Booking> createState() => _DateTimeInputExampleState();
+  State<Booking> createState() => _BookingStadium();
 }
 
-class _DateTimeInputExampleState extends State<Booking> {
+class _BookingStadium extends State<Booking> {
+  // --     The Logic        --
   DateTime? _selectedDate;
   int? _selectedDuration; // عدد الساعات
   TimeOfDay? _startTime;
@@ -179,6 +180,8 @@ class _DateTimeInputExampleState extends State<Booking> {
     }
   }
 
+  // ------------------------- The UI Code -------------------------------------------------------------------------------------
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -214,38 +217,214 @@ class _DateTimeInputExampleState extends State<Booking> {
         ),
       ),
 
-      body: Container(
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(30), // الحافة العليا اليسرى
-            topRight: Radius.circular(30), // الحافة العليا اليمنى
+      body: Expanded(
+        child: Container(
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30), // الحافة العليا اليسرى
+              topRight: Radius.circular(30), // الحافة العليا اليمنى
+            ),
           ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(14),
-          child: Column(
-            children: [
-              SizedBox(height: 20),
-              // فورم التاريخ
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Date:',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF1D5E08),
+          child: Padding(
+            padding: const EdgeInsets.all(14),
+            child: Column(
+              children: [
+                SizedBox(height: 20),
+                // فورم التاريخ
+                const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Date:',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF1D5E08),
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 8),
-              InkWell(
-                onTap: _pickDate,
-                child: Container(
+                const SizedBox(height: 8),
+                InkWell(
+                  onTap: _pickDate,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 12,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white, // لون خلفية الفورم
+                      borderRadius: BorderRadius.circular(8),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(
+                            0xFF319710,
+                          ).withOpacity(1), // ظل أخضر شبه شفاف
+                          blurRadius: 9, // درجة الضبابية
+                          offset: const Offset(0, 1), // اتجاه الظل للأسفل
+                        ),
+                      ],
+                    ),
+
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment
+                          .start, // نجعل العناصر تبدأ من اليسار
+                      children: [
+                        const Icon(
+                          Icons.calendar_today,
+                          color: Color(0xFF319710),
+                        ), // الأيقونة أولاً
+                        const SizedBox(
+                          width: 8,
+                        ), // مسافة بسيطة بين الأيقونة والنص
+                        Text(
+                          _selectedDate == null
+                              ? 'Select date'
+                              : formatDate(_selectedDate!),
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: _selectedDate == null
+                                ? const Color(0xFF1D5E08)
+                                : Color.fromARGB(255, 30, 94, 9),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+
+                // فورم المدة
+                const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Duration:',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF1D5E08),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                InkWell(
+                  onTap: _pickDuration,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 12,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white, // لون خلفية الفورم
+                      borderRadius: BorderRadius.circular(8),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(
+                            0xFF319710,
+                          ).withOpacity(1), // ظل أخضر شبه شفاف
+                          blurRadius: 9, // درجة الضبابية
+                          offset: const Offset(0, 1), // اتجاه الظل للأسفل
+                        ),
+                      ],
+                    ),
+
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        const Icon(Icons.access_time, color: Color(0xFF319710)),
+                        const SizedBox(
+                          width: 8,
+                        ), // مسافة بسيطة بين الأيقونة والنص
+                        Text(
+                          _selectedDuration == null
+                              ? 'Select duration'
+                              : '$_selectedDuration hour${_selectedDuration! > 1 ? 's' : ''}',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: _selectedDuration == null
+                                ? Color(0xFF1D5E08)
+                                : Color.fromARGB(255, 30, 94, 9),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 17),
+
+                // فورم وقت البداية
+                InkWell(
+                  onTap: () => _pickTime(isStart: true),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 13,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: const Color(0xFF319710),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      _startTime == null
+                          ? 'From --:--'
+                          : 'From ${formatTime(_startTime!)}',
+                      style: const TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 10),
+
+                // فورم وقت النهاية
+                InkWell(
+                  onTap: () => _pickTime(isStart: false),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 13,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: const Color(0xFF319710),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      _endTime == null
+                          ? 'Until --:--'
+                          : 'Until ${formatTime(_endTime!)}',
+                      style: const TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 7),
+
+                // فورم السعر
+                const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Price:',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF1D5E08),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 12,
-                    vertical: 12,
+                    vertical: 10,
                   ),
                   decoration: BoxDecoration(
                     color: Colors.white, // لون خلفية الفورم
@@ -260,422 +439,257 @@ class _DateTimeInputExampleState extends State<Booking> {
                       ),
                     ],
                   ),
-
                   child: Row(
-                    mainAxisAlignment:
-                        MainAxisAlignment.start, // نجعل العناصر تبدأ من اليسار
+                    mainAxisAlignment: MainAxisAlignment.start,
+
                     children: [
-                      const Icon(
-                        Icons.calendar_today,
-                        color: Color(0xFF319710),
-                      ), // الأيقونة أولاً
+                      const Icon(Icons.attach_money, color: Color(0xFF319710)),
                       const SizedBox(
                         width: 8,
                       ), // مسافة بسيطة بين الأيقونة والنص
                       Text(
-                        _selectedDate == null
-                            ? 'Select date'
-                            : formatDate(_selectedDate!),
-                        style: TextStyle(
+                        '${_price.toStringAsFixed(0)} YER',
+                        style: const TextStyle(
                           fontSize: 16,
-                          color: _selectedDate == null
-                              ? const Color(0xFF1D5E08)
-                              : Color.fromARGB(255, 30, 94, 9),
+                          color: Color.fromARGB(255, 30, 94, 9),
                         ),
                       ),
                     ],
                   ),
                 ),
-              ),
-              const SizedBox(height: 10),
 
-              // فورم المدة
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Duration:',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF1D5E08),
+                const SizedBox(height: 13),
+
+                // فورم العمولة
+                const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Commission:',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF1D5E08),
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 8),
-              InkWell(
-                onTap: _pickDuration,
-                child: Container(
+                const SizedBox(height: 8),
+
+                Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 12,
-                    vertical: 12,
+                    vertical: 10,
                   ),
                   decoration: BoxDecoration(
-                    color: Colors.white, // لون خلفية الفورم
+                    color: Colors.white, // خلفية الفورم
                     borderRadius: BorderRadius.circular(8),
                     boxShadow: [
                       BoxShadow(
                         color: const Color(
                           0xFF319710,
-                        ).withOpacity(1), // ظل أخضر شبه شفاف
-                        blurRadius: 9, // درجة الضبابية
-                        offset: const Offset(0, 1), // اتجاه الظل للأسفل
+                        ).withOpacity(1), // ظل أخضر غامق
+                        blurRadius: 9, // مدى انتشار الظل
+                        offset: const Offset(0, 1), // اتجاه الظل للأسفل قليلاً
                       ),
                     ],
                   ),
-
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const Icon(Icons.access_time, color: Color(0xFF319710)),
+                      const Icon(
+                        Icons.monetization_on,
+                        color: Color(0xFF319710),
+                      ),
                       const SizedBox(
                         width: 8,
                       ), // مسافة بسيطة بين الأيقونة والنص
                       Text(
-                        _selectedDuration == null
-                            ? 'Select duration'
-                            : '$_selectedDuration hour${_selectedDuration! > 1 ? 's' : ''}',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: _selectedDuration == null
-                              ? Color(0xFF1D5E08)
-                              : Color.fromARGB(255, 30, 94, 9),
+                        '${_commission.toStringAsFixed(0)} YER',
+                        style: const TextStyle(
+                          fontSize: 15,
+                          color: Color.fromARGB(255, 30, 94, 9),
                         ),
                       ),
                     ],
                   ),
                 ),
-              ),
 
-              const SizedBox(height: 17),
+                const SizedBox(height: 11),
 
-              // فورم وقت البداية
-              InkWell(
-                onTap: () => _pickTime(isStart: true),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 13,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: const Color(0xFF319710),
-                  ),
-                  alignment: Alignment.center,
+                // فورم اختيار طريقة الدفع
+                const Align(
+                  alignment: Alignment.centerLeft,
                   child: Text(
-                    _startTime == null
-                        ? 'From --:--'
-                        : 'From ${formatTime(_startTime!)}',
-                    style: const TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-
-              const SizedBox(height: 10),
-
-              // فورم وقت النهاية
-              InkWell(
-                onTap: () => _pickTime(isStart: false),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 13,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: const Color(0xFF319710),
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    _endTime == null
-                        ? 'Until --:--'
-                        : 'Until ${formatTime(_endTime!)}',
-                    style: const TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-
-              const SizedBox(height: 7),
-
-              // فورم السعر
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Price:',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF1D5E08),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 8),
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 10,
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.white, // لون خلفية الفورم
-                  borderRadius: BorderRadius.circular(8),
-                  boxShadow: [
-                    BoxShadow(
-                      color: const Color(
-                        0xFF319710,
-                      ).withOpacity(1), // ظل أخضر شبه شفاف
-                      blurRadius: 9, // درجة الضبابية
-                      offset: const Offset(0, 1), // اتجاه الظل للأسفل
-                    ),
-                  ],
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-
-                  children: [
-                    const Icon(Icons.attach_money, color: Color(0xFF319710)),
-                    const SizedBox(width: 8), // مسافة بسيطة بين الأيقونة والنص
-                    Text(
-                      '${_price.toStringAsFixed(0)} YER',
-                      style: const TextStyle(
-                        fontSize: 16,
-                        color: Color.fromARGB(255, 30, 94, 9),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              const SizedBox(height: 13),
-
-              // فورم العمولة
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Commission:',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF1D5E08),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 8),
-
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 10,
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.white, // خلفية الفورم
-                  borderRadius: BorderRadius.circular(8),
-                  boxShadow: [
-                    BoxShadow(
-                      color: const Color(
-                        0xFF319710,
-                      ).withOpacity(1), // ظل أخضر غامق
-                      blurRadius: 9, // مدى انتشار الظل
-                      offset: const Offset(0, 1), // اتجاه الظل للأسفل قليلاً
-                    ),
-                  ],
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    const Icon(Icons.monetization_on, color: Color(0xFF319710)),
-                    const SizedBox(width: 8), // مسافة بسيطة بين الأيقونة والنص
-                    Text(
-                      '${_commission.toStringAsFixed(0)} YER',
-                      style: const TextStyle(
-                        fontSize: 15,
-                        color: Color.fromARGB(255, 30, 94, 9),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              const SizedBox(height: 11),
-
-              // فورم اختيار طريقة الدفع
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Payment Method:',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF1D5E08),
-                  ),
-                ),
-              ),
-              SizedBox(height: 8),
-
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 0,
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                  boxShadow: [
-                    BoxShadow(
-                      color: const Color(
-                        0xFF319710,
-                      ).withOpacity(1), // ظل أخضر غامق
-                      blurRadius: 9, // مدى انتشار الظل
-                      offset: const Offset(0, 1), // اتجاه الظل للأسفل قليلاً
-                    ),
-                  ],
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Expanded(
-                      child: Row(
-                        children: [
-                          Radio<String>(
-                            value: 'Bank Transfer',
-                            groupValue: _selectedPayment,
-                            activeColor: const Color(0xFF319710),
-                            onChanged: (value) {
-                              setState(() {
-                                _selectedPayment = value!;
-                              });
-                            },
-                          ),
-                          const Text(
-                            'Bank Transfer',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Color(0xFF1D5E08),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: Row(
-                        children: [
-                          Radio<String>(
-                            value: 'Credit Card',
-                            groupValue: _selectedPayment,
-                            activeColor: const Color(0xFF319710),
-                            onChanged: (value) {
-                              setState(() {
-                                _selectedPayment = value!;
-                              });
-                            },
-                          ),
-                          const Text(
-                            'Credit Card',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Color(0xFF1D5E08),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              const SizedBox(height: 3),
-
-              // نص الموافقة على الشروط ومربع الموافقة
-              Row(
-                children: [
-                  Transform.scale(
-                    scale:
-                        1.2, //   (1.0 = الحجم العادي، 1.5 = أكبر) تغيير حجم المربع
-                    child: Checkbox(
-                      value: _agreeToTerms,
-                      activeColor: const Color(0xFF319710), // اللون الأخضر
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8), //  خفيف التقوّس
-                      ),
-                      onChanged: (value) {
-                        setState(() {
-                          _agreeToTerms = value ?? false;
-                        });
-                      },
-                    ),
-                  ),
-                  //const SizedBox(width: 1),
-                  const Text(
-                    'I agree to the terms and conditions.',
+                    'Payment Method:',
                     style: TextStyle(
                       fontSize: 16,
-                      color: Color(0xFF1D5E08),
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ],
-              ),
-              // SizedBox(height: 15),
-
-              // زر تأكيد الحجز
-              SizedBox(
-                width: double.infinity,
-                height: 55,
-                child: ElevatedButton(
-                  onPressed:
-                      (_selectedDate != null &&
-                          _selectedDuration != null &&
-                          _startTime != null &&
-                          _endTime != null &&
-                          _selectedPayment != null &&
-                          _agreeToTerms)
-                      ? () {
-                          SharedReservations().reservations.add({
-                            'image': widget.image,
-                            'name': widget.name,
-                            'price': '${_price.toStringAsFixed(0)} YER',
-                            'date': formatDate(_selectedDate!),
-                            'time':
-                                '${formatTime(_startTime!)} - ${formatTime(_endTime!)}',
-                          });
-
-                          Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => MyReservationsPage(),
-                            ),
-                            (route) => false,
-                          );
-
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Booking Saved Successfully ✅'),
-                              backgroundColor: Colors.green,
-                            ),
-                          );
-                        }
-                      : null,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xff319710),
-                    minimumSize: const Size(double.infinity, 50),
-                  ),
-                  child: const Text(
-                    "Confirm Booking",
-                    style: TextStyle(
-                      color: Color(0xffffffff),
-                      fontSize: 18,
                       fontWeight: FontWeight.bold,
+                      color: Color(0xFF1D5E08),
                     ),
                   ),
                 ),
-              ),
-            ],
+                SizedBox(height: 8),
+
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 0,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8),
+                    boxShadow: [
+                      BoxShadow(
+                        color: const Color(
+                          0xFF319710,
+                        ).withOpacity(1), // ظل أخضر غامق
+                        blurRadius: 9, // مدى انتشار الظل
+                        offset: const Offset(0, 1), // اتجاه الظل للأسفل قليلاً
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Expanded(
+                        child: Row(
+                          children: [
+                            Radio<String>(
+                              value: 'Bank Transfer',
+                              groupValue: _selectedPayment,
+                              activeColor: const Color(0xFF319710),
+                              onChanged: (value) {
+                                setState(() {
+                                  _selectedPayment = value!;
+                                });
+                              },
+                            ),
+                            const Text(
+                              'Bank Transfer',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Color(0xFF1D5E08),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: Row(
+                          children: [
+                            Radio<String>(
+                              value: 'Credit Card',
+                              groupValue: _selectedPayment,
+                              activeColor: const Color(0xFF319710),
+                              onChanged: (value) {
+                                setState(() {
+                                  _selectedPayment = value!;
+                                });
+                              },
+                            ),
+                            const Text(
+                              'Credit Card',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Color(0xFF1D5E08),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                const SizedBox(height: 3),
+
+                // نص الموافقة على الشروط ومربع الموافقة
+                Row(
+                  children: [
+                    Transform.scale(
+                      scale:
+                          1.2, //   (1.0 = الحجم العادي، 1.5 = أكبر) تغيير حجم المربع
+                      child: Checkbox(
+                        value: _agreeToTerms,
+                        activeColor: const Color(0xFF319710), // اللون الأخضر
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                            8,
+                          ), //  خفيف التقوّس
+                        ),
+                        onChanged: (value) {
+                          setState(() {
+                            _agreeToTerms = value ?? false;
+                          });
+                        },
+                      ),
+                    ),
+                    //const SizedBox(width: 1),
+                    const Text(
+                      'I agree to the terms and conditions.',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Color(0xFF1D5E08),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+                // SizedBox(height: 15),
+
+                // زر تأكيد الحجز
+                SizedBox(
+                  width: double.infinity,
+                  height: 55,
+                  child: ElevatedButton(
+                    onPressed:
+                        (_selectedDate != null &&
+                            _selectedDuration != null &&
+                            _startTime != null &&
+                            _endTime != null &&
+                            _selectedPayment != null &&
+                            _agreeToTerms)
+                        ? () {
+                            SharedReservations().reservations.add({
+                              'image': widget.image,
+                              'name': widget.name,
+                              'price': '${_price.toStringAsFixed(0)} YER',
+                              'date': formatDate(_selectedDate!),
+                              'time':
+                                  '${formatTime(_startTime!)} - ${formatTime(_endTime!)}',
+                            });
+
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => MyReservationsPage(),
+                              ),
+                              (route) => false,
+                            );
+
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Booking Saved Successfully ✅'),
+                                backgroundColor: Colors.green,
+                              ),
+                            );
+                          }
+                        : null,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xff319710),
+                      minimumSize: const Size(double.infinity, 50),
+                    ),
+                    child: const Text(
+                      "Confirm Booking",
+                      style: TextStyle(
+                        color: Color(0xffffffff),
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

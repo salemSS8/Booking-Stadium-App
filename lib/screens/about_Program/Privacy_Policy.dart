@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ArenaBook/screens/about_Program/about_program.dart';
 
 class PrivacyPolicy extends StatelessWidget {
   const PrivacyPolicy({super.key});
@@ -202,8 +203,8 @@ class PrivacyPolicy extends StatelessWidget {
                       SizedBox(height: 30),
                       Center(
                         child: SizedBox(
-                          width: 300,
-                          height: 65,
+                          width: 200,
+                          height: 55,
 
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
@@ -214,13 +215,19 @@ class PrivacyPolicy extends StatelessWidget {
                               padding: const EdgeInsets.all(16),
                             ),
                             onPressed: () {
-                              // هنا تكتب كود تحديث البيانات
+                              Navigator.pop(
+                                context,
+                                // context,
+                                // MaterialPageRoute(
+                                //   builder: (context) => AboutProgram(),
+                                // ),
+                              );
                             },
                             child: const Text(
                               "Done",
                               style: TextStyle(
                                 color: Color(0xffffffff),
-                                fontSize: 25,
+                                fontSize: 18,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),

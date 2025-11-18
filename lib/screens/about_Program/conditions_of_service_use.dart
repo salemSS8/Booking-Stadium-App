@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project/screens/about_Program/Privacy_Policy.dart';
+import 'package:ArenaBook/screens/about_Program/Privacy_Policy.dart';
 
 class ConditionsOfServiceUse extends StatelessWidget {
   const ConditionsOfServiceUse({super.key});
@@ -203,8 +203,8 @@ class ConditionsOfServiceUse extends StatelessWidget {
                       SizedBox(height: 30),
                       Center(
                         child: SizedBox(
-                          width: 300,
-                          height: 65,
+                          width: 200,
+                          height: 55,
 
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
@@ -226,7 +226,7 @@ class ConditionsOfServiceUse extends StatelessWidget {
                               "Done",
                               style: TextStyle(
                                 color: Color(0xffffffff),
-                                fontSize: 25,
+                                fontSize: 18,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),

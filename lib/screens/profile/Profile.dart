@@ -62,7 +62,7 @@ class _ProfileState extends State<Profile> {
                               borderRadius: BorderRadius.circular(25),
                               image: const DecorationImage(
                                 image: AssetImage(
-                                  'assets/images/logo/logo.png',
+                                  'assets/images/onboarding/profile.png',
                                 ),
                                 fit: BoxFit.cover,
                               ),
@@ -177,6 +177,7 @@ class _ProfileState extends State<Profile> {
                           ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
+                            borderSide: BorderSide.none,
                           ),
                           suffixIcon: IconButton(
                             icon: Icon(
@@ -284,14 +285,14 @@ class _ProfileState extends State<Profile> {
                     SizedBox(height: 30),
                     Center(
                       child: SizedBox(
-                        width: 170,
-                        height: 66,
+                        width: 200,
+                        height: 55,
 
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Color(0xff319710),
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
+                              borderRadius: BorderRadius.circular(16),
                             ),
                             padding: const EdgeInsets.symmetric(vertical: 14),
                           ),

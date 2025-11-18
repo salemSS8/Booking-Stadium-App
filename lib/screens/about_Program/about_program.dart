@@ -1,7 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:project/screens/about_Program/Privacy_Policy.dart';
-import 'package:project/screens/about_Program/conditions_of_service_use.dart';
+import 'package:ArenaBook/screens/about_Program/Privacy_Policy.dart';
+import 'package:ArenaBook/screens/about_Program/conditions_of_service_use.dart';
+import 'package:ArenaBook/screens/main_screen/main_page.dart';
 
 class AboutProgram extends StatelessWidget {
   const AboutProgram({super.key});
@@ -23,7 +24,10 @@ class AboutProgram extends StatelessWidget {
         centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios_new, color: Color(0xffffffff)),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => MainPage()),
+          ),
         ),
       ),
       body: Column(

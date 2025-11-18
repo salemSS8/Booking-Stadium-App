@@ -2,16 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../providers/user_provider.dart';
-import 'package:project/screens/Favorites/favorites_page.dart';
-import 'package:project/screens/My%20Reservations%20page/My%20Reservations%20page.dart';
-import 'package:project/screens/about_Program/about_program.dart';
-import 'package:project/screens/main_screen/Widget/stadiumCard.dart';
-import 'package:project/screens/main_screen/stadium_data.dart';
+import 'package:ArenaBook/screens/Favorites/favorites_page.dart';
+import 'package:ArenaBook/screens/My%20Reservations%20page/My%20Reservations%20page.dart';
+import 'package:ArenaBook/screens/about_Program/about_program.dart';
+import 'package:ArenaBook/screens/main_screen/Widget/stadiumCard.dart';
+import 'package:ArenaBook/screens/main_screen/stadium_data.dart';
 // تأكد من أن هذا المسار صحيح
-import 'package:project/screens/main_screen/stadium_details.dart';
-import 'package:project/screens/notifications_page/notifications_page.dart';
-import 'package:project/screens/payment_history/payment_history_page.dart';
-import 'package:project/screens/profile/Profile.dart';
+import 'package:ArenaBook/screens/main_screen/stadium_details.dart';
+import 'package:ArenaBook/screens/notifications_page/notifications_page.dart';
+import 'package:ArenaBook/screens/payment_history/payment_history_page.dart';
+import 'package:ArenaBook/screens/profile/Profile.dart';
 
 import '../Registration process/login.dart';
 
@@ -488,7 +488,7 @@ class _MainPageState extends State<MainPage> {
                     final stadium = stadiums[index];
                     return GestureDetector(
                       onTap: () {
-                        // --- تم الإصلاح هنا: تمرير البيانات إلى صفحة التفاصيل ---
+                        //  تمرير البيانات إلى صفحة التفاصيل ---
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -527,5 +527,3 @@ class _MainPageState extends State<MainPage> {
     );
   }
 }
-
-// --- ويدجت مخصص لبطاقة الملعب (لا تغيير هنا) ---

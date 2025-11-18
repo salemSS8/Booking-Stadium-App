@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 // --- الخطوة 1: استيراد ملف صفحة التحقق ---
-import 'package:project/screens/Registration process/forgetPassword/verification_Code.dart';
+import 'package:ArenaBook/screens/Registration process/forgetPassword/verification_Code.dart';
 
 class InterEmailPage extends StatelessWidget {
   const InterEmailPage({super.key});

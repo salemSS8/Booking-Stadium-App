@@ -1,6 +1,8 @@
+import 'package:ArenaBook/screens/Booking/Booking.dart';
+import 'package:ArenaBook/screens/main_screen/Widget/detailCard.dart';
 import 'package:flutter/material.dart';
-import 'package:project/screens/Booking/Booking.dart';
-import 'package:project/screens/main_screen/Widget/detailCard.dart';
+import 'package:ArenaBook/screens/Booking/Booking.dart';
+import 'package:ArenaBook/screens/main_screen/Widget/detailCard.dart';
 
 class StadiumDetailsPage extends StatelessWidget {
   // 1. إضافة المتغيرات لاستقبال البيانات
@@ -168,51 +170,6 @@ class StadiumDetailsPage extends StatelessWidget {
                                   Booking(name: name, image: imageUrl),
                             ),
                           );
-                          // Navigator.pushReplacement(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => Booking(
-                          //       name: 'Al-Siteen Stadium',
-                          //       image: 'assets/images/stadiums/1.png',
-                          //     ),
-                          //   ),
-                          // );
-                          // Navigator.pushReplacement(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => Booking(
-                          //       name: 'Al-Amoudi Stadium',
-                          //       image: 'assets/images/stadiums/2.png',
-                          //     ),
-                          //   ),
-                          // );
-                          // Navigator.pushReplacement(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => Booking(
-                          //       name: 'Al-Shafei Stadium',
-                          //       image: 'assets/images/stadiums/3.png',
-                          //     ),
-                          //   ),
-                          // );
-                          // Navigator.pushReplacement(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => Booking(
-                          //       name: 'Al-Amoudi Stadium',
-                          //       image: 'assets/images/stadiums/6.png',
-                          //     ),
-                          //   ),
-                          // );
-                          // Navigator.pushReplacement(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => Booking(
-                          //       name: 'Al-Monash Stadium',
-                          //       image: 'assets/images/stadiums/5.png',
-                          //     ),
-                          //   ),
-                          // );
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFF319710),
@@ -243,5 +200,3 @@ class StadiumDetailsPage extends StatelessWidget {
     );
   }
 }
-
-// --- ويدجت مساعد لبطاقات التفاصيل (تم تعديله) ---

@@ -215,12 +215,12 @@ class PrivacyPolicy extends StatelessWidget {
                               padding: const EdgeInsets.all(16),
                             ),
                             onPressed: () {
-                              Navigator.pop(
+                              Navigator.push(
                                 context,
                                 // context,
-                                // MaterialPageRoute(
-                                //   builder: (context) => AboutProgram(),
-                                // ),
+                                MaterialPageRoute(
+                                  builder: (context) => AboutProgram(),
+                                ),
                               );
                             },
                             child: const Text(

@@ -1,3 +1,4 @@
+import 'package:ArenaBook/screens/about_Program/about_program.dart';
 import 'package:flutter/material.dart';
 import 'package:ArenaBook/screens/about_Program/Privacy_Policy.dart';
 
@@ -218,7 +219,7 @@ class ConditionsOfServiceUse extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => PrivacyPolicy(),
+                                  builder: (context) => AboutProgram(),
                                 ),
                               );
                             },

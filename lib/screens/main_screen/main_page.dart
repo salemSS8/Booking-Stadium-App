@@ -224,7 +224,7 @@ class _MainPageState extends State<MainPage> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const Profile()),
+                      MaterialPageRoute(builder: (context) => Profile()),
                     );
                   },
                   child: Row(
